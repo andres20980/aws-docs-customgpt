@@ -70,9 +70,18 @@ jobs:
         # Agregar el archivo combinado a la rama gh-pages
         git push origin gh-pages
 
-    # Usar la versión correcta v3 de upload-artifact
-    - name: Upload Combined Documentation as Artifact
-      uses: actions/upload-artifact@v3  # Usamos la versión v3
-      with:
-        name: combined-documentation
-        path: combined_documentation.md
+    # En vez de upload-artifact, cargamos el archivo usando `curl` y la API de GitHub:
+    - name: Upload Combined Documentation as Artifact (via curl)
+      run: |
+        # Generar el nombre del archivo
+        FILE="combined_documentation.md"
+        
+        # Crear un archivo zip con la documentación combinada (ya que la API de GitHub espera un archivo comprimido)
+        zip combined_documentation.zip $FILE
+        
+        # Usar curl para subir el archivo a los artefactos de GitHub
+        curl -X POST \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -F "file=@combined_documentation.zip" \
+          https://uploads.github.com/repos/${{ github.repository }}/actions/artifacts
