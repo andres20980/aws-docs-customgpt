@@ -20,13 +20,13 @@ jobs:
         pip install -r requirements.txt
     - name: Update Documentation
       run: |
-        python src/main.py  # Suponiendo que este script actualiza la documentación
+        python src/main.py  # Asume que este script actualiza la documentación
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add -A
-        git commit -m "Automated documentation update" || exit 0  # Exit gracefully if no changes
+        git commit -m "Automated documentation update" || exit 0  # Salir sin error si no hay cambios
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
