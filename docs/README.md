@@ -1,19 +1,13 @@
-# AWS Docs Markdown Project
+# AWS Docs CustomGPT Project
 
-## Descripción
-Este proyecto automatiza la descarga y conversión de la documentación de AWS en archivos Markdown. Esto permite a los usuarios tener acceso offline a la documentación o integrarla en otras herramientas que soportan Markdown.
+## Overview
+This project automates the integration of AWS documentation as git submodules and facilitates their updates.
 
-## Características
-- Descarga automática de las páginas de documentación de AWS.
-- Conversión de HTML a Markdown.
-- Estructura organizada de archivos para fácil acceso.
+## Getting Started
+Follow the instructions in SETUP.md to configure and start using this project.
 
-## Requisitos
-- Python 3.8+
-- Bibliotecas Python especificadas en `requirements.txt`
+## How It Works
+This project uses GitHub Actions to periodically update AWS documentation submodules. For more details, see the workflow in `.github/workflows/add_submodules.yml`.
 
-## Uso
-Para utilizar este proyecto, siga los pasos de instalación y configuración descritos en `SETUP.md`, y luego ejecute el script principal desde la línea de comandos:
-
-```bash
-python src/main.py
+## Contributing
+Please refer to CONTRIBUTING.md if you are interested in helping improve this project.
