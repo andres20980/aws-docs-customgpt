@@ -27,4 +27,4 @@ jobs:
     - name: Add Submodules
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python add_submodules.py
+      run: python src/add_submodules.py
