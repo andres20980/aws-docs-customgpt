@@ -49,6 +49,10 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         
+        # Configurar git para usar el token de acceso personal (PAT)
+        git config --global credential.helper 'store'
+        echo "https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com" > ~/.git-credentials
+        
         # Crear una nueva rama gh-pages si no existe
         git checkout -b gh-pages
         
@@ -70,8 +74,7 @@ jobs:
         # Agregar el archivo combinado a la rama gh-pages
         git push origin gh-pages
 
-    # Usar curl para cargar el archivo como artefacto (sin usar upload-artifact)
-    - name: Upload Combined Documentation as Artifact (via curl)
+    - name: Upload Combined Documentation as Artifact
       run: |
         # Generar el nombre del archivo
         FILE="combined_documentation.md"
