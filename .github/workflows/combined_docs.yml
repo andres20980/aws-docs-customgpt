@@ -1,12 +1,12 @@
-name: Generate Combined Documentation
+name: Generate and Publish Combined Documentation
 
 on:
-  workflow_dispatch:  # Esto permite que el flujo de trabajo sea ejecutado manualmente
+  workflow_dispatch:  # Permite que el flujo de trabajo sea ejecutado manualmente
   schedule:
     - cron: '0 0 * * 0'  # Ejecuta todos los domingos a medianoche
 
 jobs:
-  generate-documentation:
+  generate-and-publish-doc:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,23 +28,51 @@ jobs:
     - name: Generate Combined Documentation
       run: |
         # Crear un archivo de documentación combinado vacío
-        echo "# AWS Documentation Combined" > combined_documentation.txt
+        echo "# AWS Documentation Combined" > combined_documentation.md
         
         # Recorrer los submódulos y extraer todo el contenido de los archivos
         for submodule in $(git submodule foreach 'echo $name'); do
-          echo "## Submódulo: $submodule" >> combined_documentation.txt
+          echo "## Submódulo: $submodule" >> combined_documentation.md
           
           # Recorrer todos los archivos dentro del submódulo y agregarlos al archivo combinado
-          find "$submodule" -type f -exec cat {} \; >> combined_documentation.txt
+          find "$submodule" -type f -exec cat {} \; >> combined_documentation.md
 
-          echo "\n\n" >> combined_documentation.txt  # Añadir salto de línea entre submódulos
+          echo "\n\n" >> combined_documentation.md  # Añadir salto de línea entre submódulos
         done
         
         # Verificar que el archivo combinado se haya creado correctamente
-        cat combined_documentation.txt
+        cat combined_documentation.md
 
+    - name: Commit and Push to gh-pages
+      run: |
+        # Configurar git
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        
+        # Crear una nueva rama gh-pages si no existe
+        git checkout -b gh-pages
+        
+        # Copiar el archivo combinado a la raíz de la rama
+        cp combined_documentation.md ./index.md
+        
+        # Agregar el archivo y hacer commit
+        git add index.md
+        git commit -m "Update combined AWS documentation"
+
+        # Empujar los cambios a la rama gh-pages
+        git push origin gh-pages --force
+
+    - name: Publish Documentation via GitHub Pages
+      run: |
+        # Establecer GitHub Pages para servir archivos desde la rama gh-pages
+        echo "Publishing via GitHub Pages"
+        
+        # Agregar el archivo combinado a la rama gh-pages
+        git push origin gh-pages
+
+    # Reemplazamos la versión v3 de upload-artifact por v2 (la versión compatible)
     - name: Upload Combined Documentation as Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2  # Usamos la versión v2 en lugar de v3
       with:
         name: combined-documentation
-        path: combined_documentation.txt
+        path: combined_documentation.md
