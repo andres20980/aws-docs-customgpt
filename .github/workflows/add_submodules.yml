@@ -1,30 +1,30 @@
-name: Add AWS Documentation Submodules
+import requests
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * 0'  # Ejecuta todos los domingos a medianoche
+def get_repos(org, token):
+    url = f"https://api.github.com/orgs/{org}/repos?per_page=100"
+    headers = {'Authorization': f'token {token}'}
+    response = requests.get(url, headers=headers)
 
-jobs:
-  add-submodules:
-    runs-on: ubuntu-latest
+    # Imprimir la respuesta de la API para depuración
+    print("Respuesta de la API:", response.text)  # Esto te ayudará a ver qué está devolviendo la API
 
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        submodules: 'recursive'  # Asegúrate de que los submódulos se clonen también
+    # Intentar convertir la respuesta en JSON
+    data = response.json()
 
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.8'
+    # Verificar si la respuesta contiene un mensaje de error de la API
+    if isinstance(data, dict) and "message" in data:
+        print("Error de la API de GitHub:", data["message"])
+        return []
 
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests
+    # Obtener los repositorios si la respuesta es correcta
+    return [repo['clone_url'] for repo in data if isinstance(repo, dict) and repo.get('name', '').startswith('amazon')]
 
-    - name: Add Submodules
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_APP_INSTALLATION_TOKEN }}  # Usamos el Installation Token aquí
-      run: python src/add_submodules.py
+def main():
+    org = 'awsdocs'  # Cambia esto si es necesario
+    token = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN'  # Reemplázalo con tu token correcto
+    repos = get_repos(org, token)
+    for repo_url in repos:
+        print("Repo URL:", repo_url)
+
+if __name__ == '__main__':
+    main()

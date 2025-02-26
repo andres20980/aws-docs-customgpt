@@ -1,24 +1,30 @@
 import requests
-import subprocess
 
 def get_repos(org, token):
     url = f"https://api.github.com/orgs/{org}/repos?per_page=100"
     headers = {'Authorization': f'token {token}'}
     response = requests.get(url, headers=headers)
-    data = response.json()
-    return [repo['clone_url'] for repo in data if repo['name'].startswith('amazon')]
 
-def add_submodule(clone_url):
-    repo_name = clone_url.split('/')[-1].replace('.git', '')
-    submodule_path = f'awsdocs_submodules/{repo_name}'
-    subprocess.run(['git', 'submodule', 'add', clone_url, submodule_path], check=True)
+    # Imprimir la respuesta de la API para depuración
+    print("Respuesta de la API:", response.text)  # Esto te ayudará a ver qué está devolviendo la API
+
+    # Intentar convertir la respuesta en JSON
+    data = response.json()
+
+    # Verificar si la respuesta contiene un mensaje de error de la API
+    if isinstance(data, dict) and "message" in data:
+        print("Error de la API de GitHub:", data["message"])
+        return []
+
+    # Obtener los repositorios si la respuesta es correcta
+    return [repo['clone_url'] for repo in data if isinstance(repo, dict) and repo.get('name', '').startswith('amazon')]
 
 def main():
-    org = 'awsdocs'
-    token = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN'  # Replace with your actual token
+    org = 'awsdocs'  # Cambia esto si es necesario
+    token = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN'  # Reemplázalo con tu token correcto
     repos = get_repos(org, token)
     for repo_url in repos:
-        add_submodule(repo_url)
+        print("Repo URL:", repo_url)
 
 if __name__ == '__main__':
     main()
