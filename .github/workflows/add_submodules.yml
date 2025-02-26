@@ -26,5 +26,5 @@ jobs:
 
     - name: Add Submodules
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_APP_INSTALLATION_TOKEN }}  # Usamos el Installation Token aquí
       run: python src/add_submodules.py
