@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        submodules: 'recursive'  # Asegúrate de que los submódulos se clonen también
+        submodules: 'recursive'
 
     - name: Set up Python
       uses: actions/setup-python@v3
@@ -26,5 +26,5 @@ jobs:
 
     - name: Add Submodules
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_APP_INSTALLATION_TOKEN }}  # Usamos el Installation Token aquí
+        GITHUB_TOKEN: ${{ secrets.GH_APP_INSTALLATION_TOKEN }}  # Accede al secreto de la instalación
       run: python src/add_submodules.py

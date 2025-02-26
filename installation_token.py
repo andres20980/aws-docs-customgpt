@@ -1,14 +1,54 @@
+import jwt
+import time
 import requests
 
-# Installation ID obtenido
-installation_id = '61712945'  # Reemplaza con el Installation ID obtenido
-url = f'https://api.github.com/app/installations/{installation_id}/access_tokens'
+# Define tu App ID y la clave privada (.pem)
+app_id = '1159005'  # Reemplaza con tu App ID
+private_key_path = 'aws-docs-customgpt.2025-02-26.private-key.pem'  # La ruta al archivo .pem
 
-# Encabezados para la solicitud
+# Lee el archivo .pem
+with open(private_key_path, 'r') as key_file:
+    private_key = key_file.read()
+
+# Crear un JWT usando la Private Key
+now = int(time.time())
+payload = {
+    'iat': now,  # Tiempo de emisión
+    'exp': now + (10 * 60),  # El JWT expira en 10 minutos
+    'iss': app_id  # El App ID
+}
+
+jwt_token = jwt.encode(payload, private_key, algorithm='RS256')
+
+print("JWT generado:", jwt_token)
+
+# URL para obtener las instalaciones de la GitHub App
+url = 'https://api.github.com/app/installations'
+
 headers = {
-    'Authorization': f'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA1NzI1MDEsImV4cCI6MTc0MDU3MzEwMSwiaXNzIjoiMTE1OTAwNSJ9.Q7hN7NivYW0wTCc4_6JGMWxtqMXKWJnqSL-k7ALMDdJ-SuslMSh5fssqNbyfSeRVEDMDDwlKR3JQCQ1od4PMegTPTCOdxeQd_N8ef0UgLktV4pb9_BxaNG3ENUfhdQbqu4SA8wVXSE0XcWk37XlHI_WOK1lNH6m903yM_nJVDzRONMcoAGFce4TTSO_SxeTj4nczYctqaUZAuui4VCYh8z7euaRUT0ZAHe24JL0lPMIHgMA_32UhsWUEugU26gSOxaSrncowYULzblgP-i8rd3KK7mTCXOqlWv8OEhGqj616MLBLW0ULqZT81P2OACY4JBR1Q39Xbi68ZAQX5JeBWQ',  # Usa el JWT generado previamente
+    'Authorization': f'Bearer {jwt_token}',  # Usa el JWT generado
     'Accept': 'application/vnd.github.v3+json'
 }
+
+# Realizar la solicitud GET para obtener las instalaciones
+response = requests.get(url, headers=headers)
+
+# Verificar si la solicitud fue exitosa
+if response.status_code == 200:
+    installations = response.json()
+    if installations:
+        # Si encontramos instalaciones, imprimimos el Installation ID
+        installation_id = installations[0]['id']  # Usa el primer Installation ID encontrado
+        print(f"Installation ID: {installation_id}")
+    else:
+        print("No se encontraron instalaciones para esta aplicación.")
+else:
+    # Si hay un error, imprimimos el código de error y el mensaje de la API
+    print(f"Error al obtener las instalaciones: {response.status_code}")
+    print("Respuesta de la API:", response.text)
+
+# Usamos el Installation ID para obtener el Installation Token
+url = f'https://api.github.com/app/installations/{installation_id}/access_tokens'
 
 # Realizar la solicitud POST para obtener el Installation Token
 response = requests.post(url, headers=headers)

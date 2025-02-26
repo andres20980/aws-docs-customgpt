@@ -1,8 +1,9 @@
+import os
 import requests
 
 def get_repos(org, token):
     url = f"https://api.github.com/orgs/{org}/repos?per_page=100"
-    headers = {'Authorization': f'token {token}'}
+    headers = {'Authorization': f'Bearer {token}'}
     response = requests.get(url, headers=headers)
 
     # Imprimir la respuesta de la API para depuración
@@ -21,7 +22,10 @@ def get_repos(org, token):
 
 def main():
     org = 'awsdocs'  # Cambia esto si es necesario
-    token = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN'  # Reemplázalo con tu token correcto
+    token = os.getenv('GITHUB_TOKEN')  # Obtener el token desde la variable de entorno
+    if not token:
+        print("Error: No se encontró el token de GitHub en las variables de entorno.")
+        exit(1)
     repos = get_repos(org, token)
     for repo_url in repos:
         print("Repo URL:", repo_url)
