@@ -70,9 +70,9 @@ jobs:
         # Agregar el archivo combinado a la rama gh-pages
         git push origin gh-pages
 
-    # Reemplazamos la versión v3 de upload-artifact por v2 (la versión compatible)
+    # Usar la versión correcta v3 de upload-artifact
     - name: Upload Combined Documentation as Artifact
-      uses: actions/upload-artifact@v2  # Usamos la versión v2 en lugar de v3
+      uses: actions/upload-artifact@v3  # Usamos la versión v3
       with:
         name: combined-documentation
         path: combined_documentation.md
