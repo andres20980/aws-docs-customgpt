@@ -142,3 +142,6 @@
 [submodule "repos/awsdocs/aws-cli-user-guide"]
 	path = repos/awsdocs/aws-cli-user-guide
 	url = https://github.com/awsdocs/aws-cli-user-guide.git
+[submodule "repos/awsdocs/aws-xray-developer-guide"]
+	path = repos/awsdocs/aws-xray-developer-guide
+	url = https://github.com/awsdocs/aws-xray-developer-guide.git
