@@ -97,3 +97,6 @@
 [submodule "repos/awsdocs/amazon-sagemaker-developer-guide"]
 	path = repos/awsdocs/amazon-sagemaker-developer-guide
 	url = https://github.com/awsdocs/amazon-sagemaker-developer-guide.git
+[submodule "repos/awsdocs/amazon-inspector-user-guide"]
+	path = repos/awsdocs/amazon-inspector-user-guide
+	url = https://github.com/awsdocs/amazon-inspector-user-guide.git
