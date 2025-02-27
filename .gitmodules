@@ -1,0 +1,300 @@
+[submodule "repos/awsdocs/elastic-beanstalk-samples"]
+	path = repos/awsdocs/elastic-beanstalk-samples
+	url = https://github.com/awsdocs/elastic-beanstalk-samples.git
+[submodule "repos/awsdocs/aws-doc-shared-content"]
+	path = repos/awsdocs/aws-doc-shared-content
+	url = https://github.com/awsdocs/aws-doc-shared-content.git
+[submodule "repos/awsdocs/aws-java-developer-guide"]
+	path = repos/awsdocs/aws-java-developer-guide
+	url = https://github.com/awsdocs/aws-java-developer-guide.git
+[submodule "repos/awsdocs/aws-xamarin-developer-guide"]
+	path = repos/awsdocs/aws-xamarin-developer-guide
+	url = https://github.com/awsdocs/aws-xamarin-developer-guide.git
+[submodule "repos/awsdocs/aws-unity-developer-guide"]
+	path = repos/awsdocs/aws-unity-developer-guide
+	url = https://github.com/awsdocs/aws-unity-developer-guide.git
+[submodule "repos/awsdocs/aws-ios-developer-guide"]
+	path = repos/awsdocs/aws-ios-developer-guide
+	url = https://github.com/awsdocs/aws-ios-developer-guide.git
+[submodule "repos/awsdocs/aws-android-developer-guide"]
+	path = repos/awsdocs/aws-android-developer-guide
+	url = https://github.com/awsdocs/aws-android-developer-guide.git
+[submodule "repos/awsdocs/aws-toolkit-eclipse-user-guide"]
+	path = repos/awsdocs/aws-toolkit-eclipse-user-guide
+	url = https://github.com/awsdocs/aws-toolkit-eclipse-user-guide.git
+[submodule "repos/awsdocs/aws-net-developer-guide"]
+	path = repos/awsdocs/aws-net-developer-guide
+	url = https://github.com/awsdocs/aws-net-developer-guide.git
+[submodule "repos/awsdocs/aws-toolkit-visual-studio-user-guide"]
+	path = repos/awsdocs/aws-toolkit-visual-studio-user-guide
+	url = https://github.com/awsdocs/aws-toolkit-visual-studio-user-guide.git
+[submodule "repos/awsdocs/aws-powershell-user-guide"]
+	path = repos/awsdocs/aws-powershell-user-guide
+	url = https://github.com/awsdocs/aws-powershell-user-guide.git
+[submodule "repos/awsdocs/aws-doc-sdk-examples"]
+	path = repos/awsdocs/aws-doc-sdk-examples
+	url = https://github.com/awsdocs/aws-doc-sdk-examples.git
+[submodule "repos/awsdocs/aws-cpp-developer-guide"]
+	path = repos/awsdocs/aws-cpp-developer-guide
+	url = https://github.com/awsdocs/aws-cpp-developer-guide.git
+[submodule "repos/awsdocs/aws-go-developer-guide"]
+	path = repos/awsdocs/aws-go-developer-guide
+	url = https://github.com/awsdocs/aws-go-developer-guide.git
+[submodule "repos/awsdocs/aws-ruby-developer-guide"]
+	path = repos/awsdocs/aws-ruby-developer-guide
+	url = https://github.com/awsdocs/aws-ruby-developer-guide.git
+[submodule "repos/awsdocs/aws-example-apps"]
+	path = repos/awsdocs/aws-example-apps
+	url = https://github.com/awsdocs/aws-example-apps.git
+[submodule "repos/awsdocs/aws-java-developer-guide-v2"]
+	path = repos/awsdocs/aws-java-developer-guide-v2
+	url = https://github.com/awsdocs/aws-java-developer-guide-v2.git
+[submodule "repos/awsdocs/aws-mobile-developer-guide"]
+	path = repos/awsdocs/aws-mobile-developer-guide
+	url = https://github.com/awsdocs/aws-mobile-developer-guide.git
+[submodule "repos/awsdocs/aws-kms-developer-guide"]
+	path = repos/awsdocs/aws-kms-developer-guide
+	url = https://github.com/awsdocs/aws-kms-developer-guide.git
+[submodule "repos/awsdocs/aws-waf-and-shield-advanced-developer-guide"]
+	path = repos/awsdocs/aws-waf-and-shield-advanced-developer-guide
+	url = https://github.com/awsdocs/aws-waf-and-shield-advanced-developer-guide.git
+[submodule "repos/awsdocs/aws-encryption-sdk-docs"]
+	path = repos/awsdocs/aws-encryption-sdk-docs
+	url = https://github.com/awsdocs/aws-encryption-sdk-docs.git
+[submodule "repos/awsdocs/aws-cloudhsm-user-guide"]
+	path = repos/awsdocs/aws-cloudhsm-user-guide
+	url = https://github.com/awsdocs/aws-cloudhsm-user-guide.git
+[submodule "repos/awsdocs/aws-organizations-docs"]
+	path = repos/awsdocs/aws-organizations-docs
+	url = https://github.com/awsdocs/aws-organizations-docs.git
+[submodule "repos/awsdocs/amazon-route53-docs"]
+	path = repos/awsdocs/amazon-route53-docs
+	url = https://github.com/awsdocs/amazon-route53-docs.git
+[submodule "repos/awsdocs/aws-directory-service-admin-guide"]
+	path = repos/awsdocs/aws-directory-service-admin-guide
+	url = https://github.com/awsdocs/aws-directory-service-admin-guide.git
+[submodule "repos/awsdocs/amazon-cloud-directory-developer-guide"]
+	path = repos/awsdocs/amazon-cloud-directory-developer-guide
+	url = https://github.com/awsdocs/amazon-cloud-directory-developer-guide.git
+[submodule "repos/awsdocs/aws-single-sign-on-user-guide"]
+	path = repos/awsdocs/aws-single-sign-on-user-guide
+	url = https://github.com/awsdocs/aws-single-sign-on-user-guide.git
+[submodule "repos/awsdocs/aws-secrets-manager-docs"]
+	path = repos/awsdocs/aws-secrets-manager-docs
+	url = https://github.com/awsdocs/aws-secrets-manager-docs.git
+[submodule "repos/awsdocs/iam-user-guide"]
+	path = repos/awsdocs/iam-user-guide
+	url = https://github.com/awsdocs/iam-user-guide.git
+[submodule "repos/awsdocs/amazon-cloudfront-developer-guide"]
+	path = repos/awsdocs/amazon-cloudfront-developer-guide
+	url = https://github.com/awsdocs/amazon-cloudfront-developer-guide.git
+[submodule "repos/awsdocs/amazon-s3-developer-guide"]
+	path = repos/awsdocs/amazon-s3-developer-guide
+	url = https://github.com/awsdocs/amazon-s3-developer-guide.git
+[submodule "repos/awsdocs/amazon-glacier-developer-guide"]
+	path = repos/awsdocs/amazon-glacier-developer-guide
+	url = https://github.com/awsdocs/amazon-glacier-developer-guide.git
+[submodule "repos/awsdocs/amazon-sagemaker-developer-guide"]
+	path = repos/awsdocs/amazon-sagemaker-developer-guide
+	url = https://github.com/awsdocs/amazon-sagemaker-developer-guide.git
+[submodule "repos/awsdocs/amazon-inspector-user-guide"]
+	path = repos/awsdocs/amazon-inspector-user-guide
+	url = https://github.com/awsdocs/amazon-inspector-user-guide.git
+[submodule "repos/awsdocs/amazon-guardduty-user-guide"]
+	path = repos/awsdocs/amazon-guardduty-user-guide
+	url = https://github.com/awsdocs/amazon-guardduty-user-guide.git
+[submodule "repos/awsdocs/amazon-efs-user-guide"]
+	path = repos/awsdocs/amazon-efs-user-guide
+	url = https://github.com/awsdocs/amazon-efs-user-guide.git
+[submodule "repos/awsdocs/amazon-lex-developer-guide"]
+	path = repos/awsdocs/amazon-lex-developer-guide
+	url = https://github.com/awsdocs/amazon-lex-developer-guide.git
+[submodule "repos/awsdocs/amazon-comprehend-developer-guide"]
+	path = repos/awsdocs/amazon-comprehend-developer-guide
+	url = https://github.com/awsdocs/amazon-comprehend-developer-guide.git
+[submodule "repos/awsdocs/amazon-translate-developer-guide"]
+	path = repos/awsdocs/amazon-translate-developer-guide
+	url = https://github.com/awsdocs/amazon-translate-developer-guide.git
+[submodule "repos/awsdocs/amazon-transcribe-developer-guide"]
+	path = repos/awsdocs/amazon-transcribe-developer-guide
+	url = https://github.com/awsdocs/amazon-transcribe-developer-guide.git
+[submodule "repos/awsdocs/amazon-dynamodb-developer-guide"]
+	path = repos/awsdocs/amazon-dynamodb-developer-guide
+	url = https://github.com/awsdocs/amazon-dynamodb-developer-guide.git
+[submodule "repos/awsdocs/aws-lambda-developer-guide"]
+	path = repos/awsdocs/aws-lambda-developer-guide
+	url = https://github.com/awsdocs/aws-lambda-developer-guide.git
+[submodule "repos/awsdocs/aws-cost-management-user-guide"]
+	path = repos/awsdocs/aws-cost-management-user-guide
+	url = https://github.com/awsdocs/aws-cost-management-user-guide.git
+[submodule "repos/awsdocs/aws-artifact-user-guide"]
+	path = repos/awsdocs/aws-artifact-user-guide
+	url = https://github.com/awsdocs/aws-artifact-user-guide.git
+[submodule "repos/awsdocs/amazon-transcoder-developer-guide"]
+	path = repos/awsdocs/amazon-transcoder-developer-guide
+	url = https://github.com/awsdocs/amazon-transcoder-developer-guide.git
+[submodule "repos/awsdocs/aws-certificate-user-guide"]
+	path = repos/awsdocs/aws-certificate-user-guide
+	url = https://github.com/awsdocs/aws-certificate-user-guide.git
+[submodule "repos/awsdocs/amazon-sumerian-user-guide"]
+	path = repos/awsdocs/amazon-sumerian-user-guide
+	url = https://github.com/awsdocs/amazon-sumerian-user-guide.git
+[submodule "repos/awsdocs/aws-cli-user-guide"]
+	path = repos/awsdocs/aws-cli-user-guide
+	url = https://github.com/awsdocs/aws-cli-user-guide.git
+[submodule "repos/awsdocs/aws-xray-developer-guide"]
+	path = repos/awsdocs/aws-xray-developer-guide
+	url = https://github.com/awsdocs/aws-xray-developer-guide.git
+[submodule "repos/awsdocs/aws-sct-user-guide"]
+	path = repos/awsdocs/aws-sct-user-guide
+	url = https://github.com/awsdocs/aws-sct-user-guide.git
+[submodule "repos/awsdocs/amazon-rds-user-guide"]
+	path = repos/awsdocs/amazon-rds-user-guide
+	url = https://github.com/awsdocs/amazon-rds-user-guide.git
+[submodule "repos/awsdocs/aws-dms-user-guide"]
+	path = repos/awsdocs/aws-dms-user-guide
+	url = https://github.com/awsdocs/aws-dms-user-guide.git
+[submodule "repos/awsdocs/aws-dms-step-by-step"]
+	path = repos/awsdocs/aws-dms-step-by-step
+	url = https://github.com/awsdocs/aws-dms-step-by-step.git
+[submodule "repos/awsdocs/amazon-rekognition-developer-guide"]
+	path = repos/awsdocs/amazon-rekognition-developer-guide
+	url = https://github.com/awsdocs/amazon-rekognition-developer-guide.git
+[submodule "repos/awsdocs/amazon-kinesis-data-firehose-developer-guide"]
+	path = repos/awsdocs/amazon-kinesis-data-firehose-developer-guide
+	url = https://github.com/awsdocs/amazon-kinesis-data-firehose-developer-guide.git
+[submodule "repos/awsdocs/aws-glue-developer-guide"]
+	path = repos/awsdocs/aws-glue-developer-guide
+	url = https://github.com/awsdocs/aws-glue-developer-guide.git
+[submodule "repos/awsdocs/aws-serverlessrepo-developer-guide"]
+	path = repos/awsdocs/aws-serverlessrepo-developer-guide
+	url = https://github.com/awsdocs/aws-serverlessrepo-developer-guide.git
+[submodule "repos/awsdocs/amazon-kinesis-data-streams-developer-guide"]
+	path = repos/awsdocs/amazon-kinesis-data-streams-developer-guide
+	url = https://github.com/awsdocs/amazon-kinesis-data-streams-developer-guide.git
+[submodule "repos/awsdocs/amazon-application-discovery-user-guide"]
+	path = repos/awsdocs/amazon-application-discovery-user-guide
+	url = https://github.com/awsdocs/amazon-application-discovery-user-guide.git
+[submodule "repos/awsdocs/amazon-migrationhub-user-guide"]
+	path = repos/awsdocs/amazon-migrationhub-user-guide
+	url = https://github.com/awsdocs/amazon-migrationhub-user-guide.git
+[submodule "repos/awsdocs/amazon-polly-developer-guide"]
+	path = repos/awsdocs/amazon-polly-developer-guide
+	url = https://github.com/awsdocs/amazon-polly-developer-guide.git
+[submodule "repos/awsdocs/aws-codepipeline-user-guide"]
+	path = repos/awsdocs/aws-codepipeline-user-guide
+	url = https://github.com/awsdocs/aws-codepipeline-user-guide.git
+[submodule "repos/awsdocs/aws-codedeploy-user-guide"]
+	path = repos/awsdocs/aws-codedeploy-user-guide
+	url = https://github.com/awsdocs/aws-codedeploy-user-guide.git
+[submodule "repos/awsdocs/aws-cloudformation-user-guide"]
+	path = repos/awsdocs/aws-cloudformation-user-guide
+	url = https://github.com/awsdocs/aws-cloudformation-user-guide.git
+[submodule "repos/awsdocs/amazon-pinpoint-user-guide"]
+	path = repos/awsdocs/amazon-pinpoint-user-guide
+	url = https://github.com/awsdocs/amazon-pinpoint-user-guide.git
+[submodule "repos/awsdocs/amazon-pinpoint-developer-guide"]
+	path = repos/awsdocs/amazon-pinpoint-developer-guide
+	url = https://github.com/awsdocs/amazon-pinpoint-developer-guide.git
+[submodule "repos/awsdocs/aws-deep-learning-amis"]
+	path = repos/awsdocs/aws-deep-learning-amis
+	url = https://github.com/awsdocs/aws-deep-learning-amis.git
+[submodule "repos/awsdocs/amazon-redshift-developer-guide"]
+	path = repos/awsdocs/amazon-redshift-developer-guide
+	url = https://github.com/awsdocs/amazon-redshift-developer-guide.git
+[submodule "repos/awsdocs/aws-greengrass-developer-guide"]
+	path = repos/awsdocs/aws-greengrass-developer-guide
+	url = https://github.com/awsdocs/aws-greengrass-developer-guide.git
+[submodule "repos/awsdocs/amazon-s3-getting-started-guide"]
+	path = repos/awsdocs/amazon-s3-getting-started-guide
+	url = https://github.com/awsdocs/amazon-s3-getting-started-guide.git
+[submodule "repos/awsdocs/amazon-s3-user-guide"]
+	path = repos/awsdocs/amazon-s3-user-guide
+	url = https://github.com/awsdocs/amazon-s3-user-guide.git
+[submodule "repos/awsdocs/aws-cloud9-user-guide"]
+	path = repos/awsdocs/aws-cloud9-user-guide
+	url = https://github.com/awsdocs/aws-cloud9-user-guide.git
+[submodule "repos/awsdocs/aws-elastic-beanstalk-developer-guide"]
+	path = repos/awsdocs/aws-elastic-beanstalk-developer-guide
+	url = https://github.com/awsdocs/aws-elastic-beanstalk-developer-guide.git
+[submodule "repos/awsdocs/amazon-elasticache-docs"]
+	path = repos/awsdocs/amazon-elasticache-docs
+	url = https://github.com/awsdocs/amazon-elasticache-docs.git
+[submodule "repos/awsdocs/amazon-kinesis-data-analytics-developer-guide"]
+	path = repos/awsdocs/amazon-kinesis-data-analytics-developer-guide
+	url = https://github.com/awsdocs/amazon-kinesis-data-analytics-developer-guide.git
+[submodule "repos/awsdocs/amazon-redshift-management-guide"]
+	path = repos/awsdocs/amazon-redshift-management-guide
+	url = https://github.com/awsdocs/amazon-redshift-management-guide.git
+[submodule "repos/awsdocs/amazon-redshift-getting-started-guide"]
+	path = repos/awsdocs/amazon-redshift-getting-started-guide
+	url = https://github.com/awsdocs/amazon-redshift-getting-started-guide.git
+[submodule "repos/awsdocs/amazon-ecs-developer-guide"]
+	path = repos/awsdocs/amazon-ecs-developer-guide
+	url = https://github.com/awsdocs/amazon-ecs-developer-guide.git
+[submodule "repos/awsdocs/AWS-Kinesis-Video-Documentation"]
+	path = repos/awsdocs/AWS-Kinesis-Video-Documentation
+	url = https://github.com/awsdocs/AWS-Kinesis-Video-Documentation.git
+[submodule "repos/awsdocs/aws-elemental-mediaconvert-user-guide"]
+	path = repos/awsdocs/aws-elemental-mediaconvert-user-guide
+	url = https://github.com/awsdocs/aws-elemental-mediaconvert-user-guide.git
+[submodule "repos/awsdocs/aws-snowball-developer-guide"]
+	path = repos/awsdocs/aws-snowball-developer-guide
+	url = https://github.com/awsdocs/aws-snowball-developer-guide.git
+[submodule "repos/awsdocs/aws-elemental-mediastore-user-guide"]
+	path = repos/awsdocs/aws-elemental-mediastore-user-guide
+	url = https://github.com/awsdocs/aws-elemental-mediastore-user-guide.git
+[submodule "repos/awsdocs/aws-storagegateway-user-guide"]
+	path = repos/awsdocs/aws-storagegateway-user-guide
+	url = https://github.com/awsdocs/aws-storagegateway-user-guide.git
+[submodule "repos/awsdocs/amazon-ecr-user-guide"]
+	path = repos/awsdocs/amazon-ecr-user-guide
+	url = https://github.com/awsdocs/amazon-ecr-user-guide.git
+[submodule "repos/awsdocs/amazon-athena-user-guide"]
+	path = repos/awsdocs/amazon-athena-user-guide
+	url = https://github.com/awsdocs/amazon-athena-user-guide.git
+[submodule "repos/awsdocs/aws-elemental-mediapackage-user-guide"]
+	path = repos/awsdocs/aws-elemental-mediapackage-user-guide
+	url = https://github.com/awsdocs/aws-elemental-mediapackage-user-guide.git
+[submodule "repos/awsdocs/aws-opsworks-user-guide"]
+	path = repos/awsdocs/aws-opsworks-user-guide
+	url = https://github.com/awsdocs/aws-opsworks-user-guide.git
+[submodule "repos/awsdocs/amazon-appstream2-developer-guide"]
+	path = repos/awsdocs/amazon-appstream2-developer-guide
+	url = https://github.com/awsdocs/amazon-appstream2-developer-guide.git
+[submodule "repos/awsdocs/aws-data-pipeline-developer-guide"]
+	path = repos/awsdocs/aws-data-pipeline-developer-guide
+	url = https://github.com/awsdocs/aws-data-pipeline-developer-guide.git
+[submodule "repos/awsdocs/amazon-vpc-user-guide"]
+	path = repos/awsdocs/amazon-vpc-user-guide
+	url = https://github.com/awsdocs/amazon-vpc-user-guide.git
+[submodule "repos/awsdocs/amazon-ec2-user-guide"]
+	path = repos/awsdocs/amazon-ec2-user-guide
+	url = https://github.com/awsdocs/amazon-ec2-user-guide.git
+[submodule "repos/awsdocs/application-auto-scaling-user-guide"]
+	path = repos/awsdocs/application-auto-scaling-user-guide
+	url = https://github.com/awsdocs/application-auto-scaling-user-guide.git
+[submodule "repos/awsdocs/amazon-workspaces-administration-guide"]
+	path = repos/awsdocs/amazon-workspaces-administration-guide
+	url = https://github.com/awsdocs/amazon-workspaces-administration-guide.git
+[submodule "repos/awsdocs/elb-user-guide"]
+	path = repos/awsdocs/elb-user-guide
+	url = https://github.com/awsdocs/elb-user-guide.git
+[submodule "repos/awsdocs/elb-application-load-balancers-user-guide"]
+	path = repos/awsdocs/elb-application-load-balancers-user-guide
+	url = https://github.com/awsdocs/elb-application-load-balancers-user-guide.git
+[submodule "repos/awsdocs/aws-direct-connect-user-guide"]
+	path = repos/awsdocs/aws-direct-connect-user-guide
+	url = https://github.com/awsdocs/aws-direct-connect-user-guide.git
+[submodule "repos/awsdocs/aws-elemental-mediatailor-user-guide"]
+	path = repos/awsdocs/aws-elemental-mediatailor-user-guide
+	url = https://github.com/awsdocs/aws-elemental-mediatailor-user-guide.git
+[submodule "repos/awsdocs/amazon-ec2-user-guide-windows"]
+	path = repos/awsdocs/amazon-ec2-user-guide-windows
+	url = https://github.com/awsdocs/amazon-ec2-user-guide-windows.git
+[submodule "repos/awsdocs/aws-auto-scaling-user-guide"]
+	path = repos/awsdocs/aws-auto-scaling-user-guide
+	url = https://github.com/awsdocs/aws-auto-scaling-user-guide.git
+[submodule "repos/awsdocs/elb-network-load-balancers-user-guide"]
+	path = repos/awsdocs/elb-network-load-balancers-user-guide
+	url = https://github.com/awsdocs/elb-network-load-balancers-user-guide.git
