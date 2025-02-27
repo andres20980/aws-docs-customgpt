@@ -79,3 +79,6 @@
 [submodule "repos/awsdocs/aws-single-sign-on-user-guide"]
 	path = repos/awsdocs/aws-single-sign-on-user-guide
 	url = https://github.com/awsdocs/aws-single-sign-on-user-guide.git
+[submodule "repos/awsdocs/aws-secrets-manager-docs"]
+	path = repos/awsdocs/aws-secrets-manager-docs
+	url = https://github.com/awsdocs/aws-secrets-manager-docs.git
