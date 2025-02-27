@@ -35,8 +35,13 @@ for REPO_NAME in $REPOS; do
     git submodule update --init "$REPOS_DIR/$REPO_NAME"
   fi
 
+  # Verificar si el directorio de salida para el repositorio está presente
+  REPO_OUTPUT_DIR="$OUTPUT_DIR/$REPO_NAME"
+  mkdir -p "$REPO_OUTPUT_DIR"
+  echo "✅ Directorio '$REPO_OUTPUT_DIR' creado."
+
   # Crear archivo de salida para cada repositorio
-  OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
+  OUTPUT_FILE="$REPO_OUTPUT_DIR/$REPO_NAME.md"
   echo "📄 Generando archivo unificado para $REPO_NAME..."
 
   # Inicializamos el archivo de salida
