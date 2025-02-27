@@ -163,3 +163,6 @@
 [submodule "repos/awsdocs/amazon-kinesis-data-firehose-developer-guide"]
 	path = repos/awsdocs/amazon-kinesis-data-firehose-developer-guide
 	url = https://github.com/awsdocs/amazon-kinesis-data-firehose-developer-guide.git
+[submodule "repos/awsdocs/aws-glue-developer-guide"]
+	path = repos/awsdocs/aws-glue-developer-guide
+	url = https://github.com/awsdocs/aws-glue-developer-guide.git
