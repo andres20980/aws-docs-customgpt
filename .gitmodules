@@ -199,3 +199,6 @@
 [submodule "repos/awsdocs/aws-deep-learning-amis"]
 	path = repos/awsdocs/aws-deep-learning-amis
 	url = https://github.com/awsdocs/aws-deep-learning-amis.git
+[submodule "repos/awsdocs/amazon-redshift-developer-guide"]
+	path = repos/awsdocs/amazon-redshift-developer-guide
+	url = https://github.com/awsdocs/amazon-redshift-developer-guide.git
