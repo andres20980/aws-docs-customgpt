@@ -202,3 +202,6 @@
 [submodule "repos/awsdocs/amazon-redshift-developer-guide"]
 	path = repos/awsdocs/amazon-redshift-developer-guide
 	url = https://github.com/awsdocs/amazon-redshift-developer-guide.git
+[submodule "repos/awsdocs/aws-greengrass-developer-guide"]
+	path = repos/awsdocs/aws-greengrass-developer-guide
+	url = https://github.com/awsdocs/aws-greengrass-developer-guide.git
