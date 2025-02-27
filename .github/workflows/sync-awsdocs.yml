@@ -1,9 +1,10 @@
-name: Sync and Upload AWS Docs Submodules
+name: Simple Sync and Upload
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   sync-repos:
@@ -13,44 +14,16 @@ jobs:
       # Paso 1: Checkout del repositorio
       - name: 📥 Checkout del repositorio
         uses: actions/checkout@v4
-        with:
-          submodules: true
-          fetch-depth: 0
 
-      # Paso 2: Ver información del repositorio (depuración)
-      - name: 🧑‍💻 Ver información del repositorio
+      # Paso 2: Configurar Git con el token personal
+      - name: 🔑 Configurar Git
+        env:
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          echo "Verificando el estado de Git..."
-          git status
-          echo "Configuración remota de Git:"
-          git remote -v
-          
-      # Paso 3: Configuración de Git para submódulos
-      - name: 🛠️ Configurar Git para submódulos
-        run: |
-          echo "Configurando Git para submódulos..."
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git remote set-url origin https://github-actions:${GH_TOKEN}@github.com/${{ github.repository }}.git
 
-      # Paso 4: Sincronizar submódulo
-      - name: 🔄 Sincronizar submódulo
-        run: |
-          echo "Sincronizando submódulos..."
-          git submodule update --init --recursive
-
-      # Paso 5: Procesar un submódulo y generar el archivo .md
-      - name: 🧑‍💻 Procesar y generar archivo .md para el submódulo
-        run: |
-          echo "Ejecutando script para procesar los submódulos y generar .md"
-          bash src/descargar_awsdocs.sh
-
-      # Paso 6: Commit y push de cambios
-      - name: 🔄 Commit y push de cambios
-        run: |
-          echo "Realizando commit y push de cambios..."
-          git add .
-          if git diff --staged --quiet; then
-            echo "No hay cambios para hacer commit."
-          else
-            git commit -m "🔄 Actualización de submódulo y archivo .md"
-            git push
+      # Paso 3: Ejecutar script Bash
+      - name: 🧑‍💻 Ejecutar script Bash
+        run: bash src/descargar_awsdocs.sh
