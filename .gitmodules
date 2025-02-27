@@ -190,3 +190,6 @@
 [submodule "repos/awsdocs/aws-cloudformation-user-guide"]
 	path = repos/awsdocs/aws-cloudformation-user-guide
 	url = https://github.com/awsdocs/aws-cloudformation-user-guide.git
+[submodule "repos/awsdocs/amazon-pinpoint-user-guide"]
+	path = repos/awsdocs/amazon-pinpoint-user-guide
+	url = https://github.com/awsdocs/amazon-pinpoint-user-guide.git
