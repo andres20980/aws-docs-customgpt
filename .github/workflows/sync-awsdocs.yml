@@ -1,9 +1,6 @@
-name: Sync AWS Docs Submodules
+name: Sync and Upload AWS Docs Submodules
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -24,41 +21,22 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-      # Paso 3: Verificar permisos de escritura en el repositorio
-      - name: 🔍 Comprobar permisos de escritura en el repositorio
+      # Paso 3: Sincronizar submódulos (uno por uno)
+      - name: 🔄 Sincronizar submódulo
         run: |
-          echo "Verificando permisos de escritura en el repositorio..."
-          git ls-remote https://github.com/${{ github.repository }} || exit 1
-        continue-on-error: false  # Esto hará que el job falle si hay un error al verificar permisos
+          git submodule update --init --recursive
 
-      # Paso 4: Limpiar el entorno de submódulos
-      - name: 🧹 Limpiar el entorno de submódulos
-        run: |
-          git submodule deinit -f .
-          rm -rf .gitmodules
-          rm -rf repos/*
-
-      # Paso 5: Sincronizar submódulos (sin detenerse por errores)
-      - name: 🔄 Sincronizar submódulos (sin parar en errores)
-        run: |
-          git submodule update --init --recursive || true
-
-      # Paso 6: Ejecutar el script de descarga y organización
-      - name: 🧑‍💻 Ejecutar el script de sincronización
+      # Paso 4: Procesar un submódulo y generar el archivo .md
+      - name: 🧑‍💻 Procesar y generar archivo .md para el submódulo
         run: |
           bash src/descargar_awsdocs.sh
 
-      # Paso 7: Commit y push de los cambios
+      # Paso 5: Commit y push de cambios
       - name: 🔄 Commit y push de cambios
         run: |
           git add .
           if git diff --staged --quiet; then
             echo "No hay cambios para hacer commit."
           else
-            git commit -m "🔄 Actualización automática de submódulos de AWS Docs"
+            git commit -m "🔄 Actualización de submódulo y archivo .md"
             git push
-          
-      # Paso 8: Subir archivos a NotebookLM (opcional, si decides automatizar más tarde)
-      # - name: 🚀 Subir archivos organizados
-      #   run: |
-      #     bash src/upload_to_notebooklm.sh
