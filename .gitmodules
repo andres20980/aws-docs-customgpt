@@ -70,3 +70,6 @@
 [submodule "repos/awsdocs/amazon-route53-docs"]
 	path = repos/awsdocs/amazon-route53-docs
 	url = https://github.com/awsdocs/amazon-route53-docs.git
+[submodule "repos/awsdocs/aws-directory-service-admin-guide"]
+	path = repos/awsdocs/aws-directory-service-admin-guide
+	url = https://github.com/awsdocs/aws-directory-service-admin-guide.git
