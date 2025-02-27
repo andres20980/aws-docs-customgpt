@@ -9,6 +9,7 @@ on:
 jobs:
   sync-repos:
     runs-on: ubuntu-latest
+
     steps:
       - name: 📥 Checkout del repositorio
         uses: actions/checkout@v4
@@ -22,7 +23,15 @@ jobs:
           git config --global user.email "github-actions@github.com"
 
       - name: 🚀 Ejecutar script de sincronización
-        run: bash src/descargar_awsdocs.sh
+        run: bash descargar_awsdocs.sh
+
+      - name: 🔑 Autenticar con GitHub usando GH_TOKEN
+        env:
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          git remote set-url origin https://github.com/andres20980/aws-docs-customgpt.git
+          git config --global credential.helper 'cache --timeout=3600'
+          echo "https://github-actions:${GH_TOKEN}@github.com" > ~/.git-credentials
 
       - name: 🔄 Commit y push de cambios
         run: |
