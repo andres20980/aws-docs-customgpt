@@ -14,10 +14,13 @@ OUTPUT_FILE="$OUTPUT_DIR/holamundo.md"
 echo "# Hola Mundo" > "$OUTPUT_FILE"
 echo "✅ Archivo '$OUTPUT_FILE' creado."
 
-# Subir el archivo a GitHub
+# Subir el archivo a GitHub con autenticación explícita
 echo "🔄 Subiendo archivo a GitHub..."
 git add "$OUTPUT_FILE"
 git commit -m "🚀 Añadir archivo holamundo.md"
-git push || { echo "⚠️ Error al hacer push"; exit 1; }
+
+# Intentar el push con autenticación explícita
+GIT_REPO_URL="https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+git push "$GIT_REPO_URL" main || { echo "⚠️ Error al hacer push"; exit 1; }
 
 echo "✅ Archivo subido correctamente."
