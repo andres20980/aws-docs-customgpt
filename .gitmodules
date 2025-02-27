@@ -274,3 +274,6 @@
 [submodule "repos/awsdocs/application-auto-scaling-user-guide"]
 	path = repos/awsdocs/application-auto-scaling-user-guide
 	url = https://github.com/awsdocs/application-auto-scaling-user-guide.git
+[submodule "repos/awsdocs/amazon-workspaces-administration-guide"]
+	path = repos/awsdocs/amazon-workspaces-administration-guide
+	url = https://github.com/awsdocs/amazon-workspaces-administration-guide.git
