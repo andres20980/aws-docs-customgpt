@@ -24,13 +24,18 @@ for REPO_DIR in "$REPOS_DIR"/*; do
     REPO_NAME=$(basename "$REPO_DIR")  # Nombre del repositorio (submódulo)
     
     echo "🔄 Comprobando si el submódulo '$REPO_NAME' está actualizado..."
-    # Actualizar solo si el submódulo no está actualizado
     git -C "$REPO_DIR" pull || { echo "⚠️ Error al actualizar el submódulo: $REPO_NAME"; continue; }
 
     # Crear archivo de salida para cada repositorio
     OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
+    
+    # Comprobar si el archivo ya existe
+    if [ -f "$OUTPUT_FILE" ]; then
+      echo "⚠️ El archivo para $REPO_NAME ya existe. Se saltará la creación."
+      continue
+    fi
+    
     echo "📄 Generando archivo unificado para '$REPO_NAME'..."
-
     # Inicializamos el archivo de salida
     > "$OUTPUT_FILE"
     echo "  ✅ Archivo de salida vacío creado: $OUTPUT_FILE"
@@ -56,7 +61,6 @@ for REPO_DIR in "$REPOS_DIR"/*; do
       echo "📄 Generando archivo para el enlace '$LINK'..."
       echo "# Enlace: $LINK" > "$LINK_FILE"
       echo "🔗 Enlace encontrado en $REPO_NAME" >> "$LINK_FILE"
-      # Aquí podrías agregar código para obtener el contenido del enlace, si es necesario
     done
 
     # Subir los archivos generados para cada submódulo
