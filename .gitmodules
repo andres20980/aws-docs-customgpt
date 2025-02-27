@@ -235,3 +235,6 @@
 [submodule "repos/awsdocs/AWS-Kinesis-Video-Documentation"]
 	path = repos/awsdocs/AWS-Kinesis-Video-Documentation
 	url = https://github.com/awsdocs/AWS-Kinesis-Video-Documentation.git
+[submodule "repos/awsdocs/aws-elemental-mediaconvert-user-guide"]
+	path = repos/awsdocs/aws-elemental-mediaconvert-user-guide
+	url = https://github.com/awsdocs/aws-elemental-mediaconvert-user-guide.git
