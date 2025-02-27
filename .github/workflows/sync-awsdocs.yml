@@ -1,7 +1,9 @@
 name: Sync and Upload AWS Docs Submodules
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   sync-repos:
@@ -21,7 +23,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-      # Paso 3: Sincronizar submódulos (uno por uno)
+      # Paso 3: Sincronizar submódulo
       - name: 🔄 Sincronizar submódulo
         run: |
           git submodule update --init --recursive
