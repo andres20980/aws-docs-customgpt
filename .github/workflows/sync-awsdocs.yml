@@ -18,7 +18,7 @@ jobs:
           submodules: true
           fetch-depth: 0
 
-      # Paso 2: Configuración de Git para el token
+      # Paso 2: Configurar Git con el token personal
       - name: 🔑 Configurar Git con token personal
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -27,8 +27,8 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
 
-      # Paso 3: Ejecutar el script Bash
-      - name: 🧑‍💻 Ejecutar script de sincronización
+      # Paso 3: Limpiar y procesar submódulos
+      - name: 🧹 Limpiar y procesar submódulos
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: bash src/descargar_awsdocs.sh

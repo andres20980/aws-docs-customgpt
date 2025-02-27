@@ -7,23 +7,33 @@ BASE_PATH="$(pwd)"
 REPOS_DIR="repos"  # Directorio donde se encuentran los submódulos
 OUTPUT_DIR="fuentes"  # Directorio donde se generarán los archivos .md
 
-# Crear el directorio de salida si no existe
+# Limpiar los directorios de trabajo previos
+echo "🧹 Limpiando directorios previos..."
+rm -rf "$REPOS_DIR" "$OUTPUT_DIR"  # Borrar los directorios 'repos' y 'fuentes'
+echo "✅ Directorios 'repos' y 'fuentes' eliminados."
+
+# Crear el directorio de salida 'fuentes' si no existe
 mkdir -p "$OUTPUT_DIR"
-echo "✅ Directorio de salida '$OUTPUT_DIR' creado o ya existente."
+echo "✅ Directorio '$OUTPUT_DIR' creado."
 
 # Asegúrate de que los submódulos estén correctamente inicializados
 echo "🔄 Actualizando submódulos..."
 git submodule update --init --recursive
 
-# Obtener los 269 repositorios de AWS Docs
-AWS_DOCS_REPOS=("AWS-Kinesis-Video-Documentation" "amazon-application-discovery-user-guide" "amazon-appstream2-developer-guide" ... )  # Rellena esta lista con todos los repos de AWS Docs
+# Paso 1: Obtener todos los repositorios de la organización AWS Docs mediante la API de GitHub
+echo "🔄 Obteniendo los repositorios de AWS Docs..."
+REPOS=$(curl -s "https://api.github.com/orgs/awsdocs/repos?per_page=100&page=1" | jq -r '.[].full_name')
 
-# Recorremos cada repositorio de AWS Docs
-for REPO_NAME in "${AWS_DOCS_REPOS[@]}"; do
+# Recorrer todos los repositorios
+for REPO_NAME in $REPOS; do
   echo "🔄 Procesando el submódulo: $REPO_NAME..."
 
-  # Sincronizar el submódulo
-  git submodule update --remote "$REPO_NAME" || { echo "⚠️ Error al actualizar submódulo: $REPO_NAME"; exit 1; }
+  # Comprobar si el submódulo está presente
+  if ! git submodule status "$REPO_NAME"; then
+    echo "⚠️ Submódulo $REPO_NAME no encontrado, añadiendo submódulo..."
+    git submodule add "https://github.com/$REPO_NAME.git" "$REPOS_DIR/$REPO_NAME"
+    git submodule update --init "$REPOS_DIR/$REPO_NAME"
+  fi
 
   # Crear archivo de salida para cada repositorio
   OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
