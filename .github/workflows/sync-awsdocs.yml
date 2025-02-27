@@ -14,8 +14,6 @@ jobs:
       # Paso 1: Checkout del repositorio
       - name: 📥 Checkout del repositorio
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false  # Necesario para usar el token personalizado
 
       # Paso 2: Configurar Git con el token personal
       - name: 🔑 Configurar Git con token personal
@@ -28,6 +26,4 @@ jobs:
 
       # Paso 3: Ejecutar script Bash
       - name: 🧑‍💻 Ejecutar script Bash
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: bash src/descargar_awsdocs.sh
