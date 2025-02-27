@@ -100,3 +100,6 @@
 [submodule "repos/awsdocs/amazon-inspector-user-guide"]
 	path = repos/awsdocs/amazon-inspector-user-guide
 	url = https://github.com/awsdocs/amazon-inspector-user-guide.git
+[submodule "repos/awsdocs/amazon-guardduty-user-guide"]
+	path = repos/awsdocs/amazon-guardduty-user-guide
+	url = https://github.com/awsdocs/amazon-guardduty-user-guide.git
