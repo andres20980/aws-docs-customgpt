@@ -178,3 +178,6 @@
 [submodule "repos/awsdocs/amazon-migrationhub-user-guide"]
 	path = repos/awsdocs/amazon-migrationhub-user-guide
 	url = https://github.com/awsdocs/amazon-migrationhub-user-guide.git
+[submodule "repos/awsdocs/amazon-polly-developer-guide"]
+	path = repos/awsdocs/amazon-polly-developer-guide
+	url = https://github.com/awsdocs/amazon-polly-developer-guide.git
