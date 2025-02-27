@@ -247,3 +247,6 @@
 [submodule "repos/awsdocs/aws-storagegateway-user-guide"]
 	path = repos/awsdocs/aws-storagegateway-user-guide
 	url = https://github.com/awsdocs/aws-storagegateway-user-guide.git
+[submodule "repos/awsdocs/amazon-ecr-user-guide"]
+	path = repos/awsdocs/amazon-ecr-user-guide
+	url = https://github.com/awsdocs/amazon-ecr-user-guide.git
