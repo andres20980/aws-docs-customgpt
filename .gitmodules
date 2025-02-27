@@ -1,3 +1,6 @@
 [submodule "repos/awsdocs/elastic-beanstalk-samples"]
 	path = repos/awsdocs/elastic-beanstalk-samples
 	url = https://github.com/awsdocs/elastic-beanstalk-samples.git
+[submodule "repos/awsdocs/aws-doc-shared-content"]
+	path = repos/awsdocs/aws-doc-shared-content
+	url = https://github.com/awsdocs/aws-doc-shared-content.git
