@@ -18,7 +18,7 @@ jobs:
           submodules: true
           fetch-depth: 0
 
-      # Paso 2: Configurar Git con token personal
+      # Paso 2: Configurar Git con el token personal
       - name: 🔑 Configurar Git con token personal
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -27,12 +27,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
 
-      # Paso 3: Sincronizar submódulos
-      - name: 🔄 Sincronizar submódulos
-        run: |
-          git submodule update --init --recursive
-
-      # Paso 4: Ejecutar script Bash para procesar los submódulos y generar .md
+      # Paso 3: Ejecutar script Bash
       - name: 🧑‍💻 Ejecutar script Bash
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

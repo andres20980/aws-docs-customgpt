@@ -11,11 +11,22 @@ OUTPUT_DIR="fuentes"  # Directorio donde se generarán los archivos .md
 mkdir -p "$OUTPUT_DIR"
 echo "✅ Directorio de salida '$OUTPUT_DIR' creado o ya existente."
 
+# Obtener lista de repositorios desde la API de GitHub
+AWSDOCS_ORG="awsdocs"
+GITHUB_API="https://api.github.com/orgs/$AWSDOCS_ORG/repos?per_page=100"
+REPO_LIST=$(curl -s "$GITHUB_API" | jq -r '.[].name')
+
+# Agregar los submódulos
+for REPO in $REPO_LIST; do
+  echo "🔄 Agregando submódulo para el repositorio: $REPO..."
+  git submodule add "https://github.com/awsdocs/$REPO.git" "$REPOS_DIR/$REPO" || echo "⚠️ Error al agregar el submódulo: $REPO"
+done
+
 # Asegúrate de que los submódulos estén correctamente inicializados
-echo "🔄 Actualizando submódulos..."
+echo "🔄 Inicializando y actualizando submódulos..."
 git submodule update --init --recursive
 
-# Recorremos cada submódulo uno por uno
+# Procesar cada submódulo
 for REPO_DIR in "$REPOS_DIR"/*; do
   if [ -d "$REPO_DIR" ]; then
     REPO_NAME=$(basename "$REPO_DIR")  # Nombre del repositorio (submódulo)
@@ -23,7 +34,7 @@ for REPO_DIR in "$REPOS_DIR"/*; do
     echo "🔄 Procesando el submódulo: $REPO_NAME..."
 
     # Sincronizar el submódulo
-    git submodule update --remote "$REPO_NAME" || { echo "⚠️ Error al actualizar submódulo: $REPO_NAME"; exit 1; }
+    git submodule update --remote "$REPO_DIR" || { echo "⚠️ Error al actualizar submódulo: $REPO_NAME"; exit 1; }
 
     # Crear archivo de salida para cada repositorio
     OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
@@ -46,7 +57,7 @@ for REPO_DIR in "$REPOS_DIR"/*; do
 
     echo "✅ Archivo generado: $OUTPUT_FILE"
 
-    # Subir el archivo generado a tu repositorio con autenticación
+    # Subir el archivo generado a tu repositorio con autenticación explícita
     echo "🔄 Añadiendo el archivo .md generado a git..."
     git add "$OUTPUT_FILE"
     git commit -m "Añadir archivo .md generado para $REPO_NAME"
