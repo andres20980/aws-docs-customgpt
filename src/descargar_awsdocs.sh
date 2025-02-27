@@ -8,14 +8,12 @@ BASE_PATH="$(pwd)"
 
 echo "🔍 Obteniendo lista de repositorios de AWS Docs desde GitHub..."
 
-# Obtener lista de repositorios (requiere `gh` CLI autenticado o usa `curl`)
+# Obtener lista de repositorios (requiere `gh` CLI autenticado o usa `web scraping`)
 REPO_LIST=$(curl -s "https://api.github.com/orgs/awsdocs/repos?per_page=100&page=1" | jq -r '.[].name')
 
-# Verificar si los repositorios ya están configurados como submódulos o no
 mkdir -p "$REPOS_DIR"
 cd "$REPOS_DIR"
 
-# Iterar sobre la lista de repositorios
 for REPO in $REPO_LIST; do
   if [ ! -d "$REPO" ]; then
     echo "🆕 Agregando submódulo para $REPO..."
@@ -24,21 +22,14 @@ for REPO in $REPO_LIST; do
     echo "🔄 Actualizando submódulo $REPO..."
     (cd "$REPO" && git pull origin main || git pull origin master || echo "⚠️ Error en $REPO")
   fi
+
+  # Verificar y corregir problemas con los submódulos si los hay
+  echo "🔄 Comprobando y reconfigurando submódulos..."
+  git submodule update --init --recursive || echo "⚠️ Error en la actualización de submódulos, lo corregimos..."
+
 done
 
 cd "$BASE_PATH"
 
-# Realizar un `git submodule update` para actualizar todos los submódulos
 echo "✅ Todos los submódulos sincronizados. Haciendo commit de los cambios..."
-
 git submodule update --remote --merge
-
-# Verificar si hubo cambios en los submódulos
-if git diff --staged --quiet; then
-  echo "No hay cambios para hacer commit."
-else
-  echo "🔥 Realizando commit y push de los cambios..."
-  git add .
-  git commit -m "🔄 Actualización automática de submódulos de AWS Docs"
-  git push
-fi

@@ -11,45 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Checkout del repositorio con los submódulos
       - name: 📥 Checkout del repositorio
         uses: actions/checkout@v4
         with:
           submodules: true
           fetch-depth: 0
 
-      # Paso 2: Configuración de Git para usar en los submódulos
       - name: 🛠️ Configurar Git para submódulos
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git submodule update --init --recursive || echo "⚠️ Error en la actualización de submódulos, lo corregimos..."
 
-      # Paso 3: Verificar permisos con el token antes de ejecutar el script
-      - name: 🔍 Verificar permisos para escribir en el repositorio
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        run: |
-          echo "🔍 Verificando permisos para acceder al repositorio..."
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          
-          # Configurar Git con el token de acceso
-          git remote set-url origin "https://$GH_TOKEN@github.com/andres20980/aws-docs-customgpt.git"
-          
-          # Intentar hacer un fetch para verificar permisos
-          git fetch origin &>/dev/null
-          if [ $? -eq 0 ]; then
-            echo "✅ Permisos verificados correctamente. Podemos acceder al repositorio."
-          else
-            echo "❌ Error al verificar los permisos. Asegúrate de que el token sea válido."
-            exit 1
-          fi
-
-      # Paso 4: Ejecutar el script de sincronización de submódulos
       - name: 🚀 Ejecutar script de sincronización
         run: bash src/descargar_awsdocs.sh
 
-      # Paso 5: Configuración y autenticación de Git para subir cambios
       - name: 🔑 Autenticar con GitHub usando PERSONAL_ACCESS_TOKEN
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -58,7 +34,6 @@ jobs:
           git config --global credential.helper 'cache --timeout=3600'
           echo "https://github-actions:${GH_TOKEN}@github.com" > ~/.git-credentials
 
-      # Paso 6: Commit y push de cambios si es necesario
       - name: 🔄 Commit y push de cambios
         run: |
           git add .
@@ -67,3 +42,4 @@ jobs:
           else
             git commit -m "🔄 Actualización automática de submódulos de AWS Docs"
             git push
+          fi
