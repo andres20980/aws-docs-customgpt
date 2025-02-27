@@ -22,3 +22,6 @@
 [submodule "repos/awsdocs/aws-toolkit-eclipse-user-guide"]
 	path = repos/awsdocs/aws-toolkit-eclipse-user-guide
 	url = https://github.com/awsdocs/aws-toolkit-eclipse-user-guide.git
+[submodule "repos/awsdocs/aws-net-developer-guide"]
+	path = repos/awsdocs/aws-net-developer-guide
+	url = https://github.com/awsdocs/aws-net-developer-guide.git
