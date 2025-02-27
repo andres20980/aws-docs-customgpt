@@ -205,3 +205,6 @@
 [submodule "repos/awsdocs/aws-greengrass-developer-guide"]
 	path = repos/awsdocs/aws-greengrass-developer-guide
 	url = https://github.com/awsdocs/aws-greengrass-developer-guide.git
+[submodule "repos/awsdocs/amazon-s3-getting-started-guide"]
+	path = repos/awsdocs/amazon-s3-getting-started-guide
+	url = https://github.com/awsdocs/amazon-s3-getting-started-guide.git
