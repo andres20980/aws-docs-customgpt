@@ -250,3 +250,6 @@
 [submodule "repos/awsdocs/amazon-ecr-user-guide"]
 	path = repos/awsdocs/amazon-ecr-user-guide
 	url = https://github.com/awsdocs/amazon-ecr-user-guide.git
+[submodule "repos/awsdocs/amazon-athena-user-guide"]
+	path = repos/awsdocs/amazon-athena-user-guide
+	url = https://github.com/awsdocs/amazon-athena-user-guide.git
