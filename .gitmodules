@@ -103,3 +103,6 @@
 [submodule "repos/awsdocs/amazon-guardduty-user-guide"]
 	path = repos/awsdocs/amazon-guardduty-user-guide
 	url = https://github.com/awsdocs/amazon-guardduty-user-guide.git
+[submodule "repos/awsdocs/amazon-efs-user-guide"]
+	path = repos/awsdocs/amazon-efs-user-guide
+	url = https://github.com/awsdocs/amazon-efs-user-guide.git
