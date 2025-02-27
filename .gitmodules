@@ -43,3 +43,6 @@
 [submodule "repos/awsdocs/aws-ruby-developer-guide"]
 	path = repos/awsdocs/aws-ruby-developer-guide
 	url = https://github.com/awsdocs/aws-ruby-developer-guide.git
+[submodule "repos/awsdocs/aws-example-apps"]
+	path = repos/awsdocs/aws-example-apps
+	url = https://github.com/awsdocs/aws-example-apps.git
