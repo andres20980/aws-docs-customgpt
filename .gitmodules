@@ -94,3 +94,6 @@
 [submodule "repos/awsdocs/amazon-glacier-developer-guide"]
 	path = repos/awsdocs/amazon-glacier-developer-guide
 	url = https://github.com/awsdocs/amazon-glacier-developer-guide.git
+[submodule "repos/awsdocs/amazon-sagemaker-developer-guide"]
+	path = repos/awsdocs/amazon-sagemaker-developer-guide
+	url = https://github.com/awsdocs/amazon-sagemaker-developer-guide.git
