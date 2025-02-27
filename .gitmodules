@@ -187,3 +187,6 @@
 [submodule "repos/awsdocs/aws-codedeploy-user-guide"]
 	path = repos/awsdocs/aws-codedeploy-user-guide
 	url = https://github.com/awsdocs/aws-codedeploy-user-guide.git
+[submodule "repos/awsdocs/aws-cloudformation-user-guide"]
+	path = repos/awsdocs/aws-cloudformation-user-guide
+	url = https://github.com/awsdocs/aws-cloudformation-user-guide.git
