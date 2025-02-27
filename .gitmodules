@@ -262,3 +262,6 @@
 [submodule "repos/awsdocs/amazon-appstream2-developer-guide"]
 	path = repos/awsdocs/amazon-appstream2-developer-guide
 	url = https://github.com/awsdocs/amazon-appstream2-developer-guide.git
+[submodule "repos/awsdocs/aws-data-pipeline-developer-guide"]
+	path = repos/awsdocs/aws-data-pipeline-developer-guide
+	url = https://github.com/awsdocs/aws-data-pipeline-developer-guide.git
