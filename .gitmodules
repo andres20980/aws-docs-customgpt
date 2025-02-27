@@ -109,3 +109,6 @@
 [submodule "repos/awsdocs/amazon-lex-developer-guide"]
 	path = repos/awsdocs/amazon-lex-developer-guide
 	url = https://github.com/awsdocs/amazon-lex-developer-guide.git
+[submodule "repos/awsdocs/amazon-comprehend-developer-guide"]
+	path = repos/awsdocs/amazon-comprehend-developer-guide
+	url = https://github.com/awsdocs/amazon-comprehend-developer-guide.git
