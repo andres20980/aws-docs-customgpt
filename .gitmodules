@@ -112,3 +112,6 @@
 [submodule "repos/awsdocs/amazon-comprehend-developer-guide"]
 	path = repos/awsdocs/amazon-comprehend-developer-guide
 	url = https://github.com/awsdocs/amazon-comprehend-developer-guide.git
+[submodule "repos/awsdocs/amazon-translate-developer-guide"]
+	path = repos/awsdocs/amazon-translate-developer-guide
+	url = https://github.com/awsdocs/amazon-translate-developer-guide.git
