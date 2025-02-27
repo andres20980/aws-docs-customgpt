@@ -121,3 +121,6 @@
 [submodule "repos/awsdocs/amazon-dynamodb-developer-guide"]
 	path = repos/awsdocs/amazon-dynamodb-developer-guide
 	url = https://github.com/awsdocs/amazon-dynamodb-developer-guide.git
+[submodule "repos/awsdocs/aws-lambda-developer-guide"]
+	path = repos/awsdocs/aws-lambda-developer-guide
+	url = https://github.com/awsdocs/aws-lambda-developer-guide.git
