@@ -166,3 +166,6 @@
 [submodule "repos/awsdocs/aws-glue-developer-guide"]
 	path = repos/awsdocs/aws-glue-developer-guide
 	url = https://github.com/awsdocs/aws-glue-developer-guide.git
+[submodule "repos/awsdocs/aws-serverlessrepo-developer-guide"]
+	path = repos/awsdocs/aws-serverlessrepo-developer-guide
+	url = https://github.com/awsdocs/aws-serverlessrepo-developer-guide.git
