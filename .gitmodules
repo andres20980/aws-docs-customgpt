@@ -73,3 +73,6 @@
 [submodule "repos/awsdocs/aws-directory-service-admin-guide"]
 	path = repos/awsdocs/aws-directory-service-admin-guide
 	url = https://github.com/awsdocs/aws-directory-service-admin-guide.git
+[submodule "repos/awsdocs/amazon-cloud-directory-developer-guide"]
+	path = repos/awsdocs/amazon-cloud-directory-developer-guide
+	url = https://github.com/awsdocs/amazon-cloud-directory-developer-guide.git
