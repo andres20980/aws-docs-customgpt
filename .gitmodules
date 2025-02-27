@@ -16,3 +16,6 @@
 [submodule "repos/awsdocs/aws-ios-developer-guide"]
 	path = repos/awsdocs/aws-ios-developer-guide
 	url = https://github.com/awsdocs/aws-ios-developer-guide.git
+[submodule "repos/awsdocs/aws-android-developer-guide"]
+	path = repos/awsdocs/aws-android-developer-guide
+	url = https://github.com/awsdocs/aws-android-developer-guide.git
