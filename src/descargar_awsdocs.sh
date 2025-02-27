@@ -2,23 +2,25 @@
 
 set -e
 
+# Directorios y variables
 REPOS_DIR="repos"
-AWS_DOCS_ORG="https://github.com/awsdocs"
+OUTPUT_DIR="fuentes"
 BASE_PATH="$(pwd)"
-MAX_FILE_SIZE_MB=200   # Tamaño máximo de cada archivo fuente en MB
-MAX_WORDS=500000      # Máximo de palabras por archivo
+AWS_DOCS_ORG="https://github.com/awsdocs"
+REPO_LIST=$(curl -s "https://api.github.com/orgs/awsdocs/repos?per_page=100&page=1" | jq -r '.[].name')
+MAX_FILE_SIZE=200000000  # 200MB en bytes
+MAX_WORDS=500000  # Máximo de palabras permitido por fuente
 
 echo "🔍 Obteniendo lista de repositorios de AWS Docs desde GitHub..."
 
-# Obtener lista de repositorios (requiere `gh` CLI autenticado o usa `web scraping`)
-REPO_LIST=$(curl -s "https://api.github.com/orgs/awsdocs/repos?per_page=100&page=1" | jq -r '.[].name')
+# Limpiar entorno previo
+rm -rf "$REPOS_DIR" "$OUTPUT_DIR"
+mkdir -p "$REPOS_DIR" "$OUTPUT_DIR"
 
-# Limpiar entorno: eliminar directorios previos si existen
-rm -rf "$REPOS_DIR"
-mkdir -p "$REPOS_DIR"
+# Cambiar al directorio de repositorios
 cd "$REPOS_DIR"
 
-# Paso 1: Clonar o actualizar submódulos
+# Sincronizar submódulos
 for REPO in $REPO_LIST; do
   if [ ! -d "$REPO" ]; then
     echo "🆕 Agregando submódulo para $REPO..."
@@ -29,48 +31,61 @@ for REPO in $REPO_LIST; do
   fi
 done
 
+# Volver al directorio base
 cd "$BASE_PATH"
 
-# Paso 2: Organizar los archivos .md por temática (basado en nombre del repositorio)
-echo "📑 Organizando archivos .md..."
+echo "✅ Submódulos sincronizados. Procesando los archivos .md..."
 
-mkdir -p "$BASE_PATH/aws_docs_fuentes"
-
-# Recorrer los submódulos para encontrar y mover archivos .md
+# Paso 1: Extraer textos de todos los repositorios .md
 for REPO in $REPO_LIST; do
-  REPO_PATH="$REPOS_DIR/$REPO"
-  if [ -d "$REPO_PATH" ]; then
-    # Buscar archivos .md en cada submódulo
-    find "$REPO_PATH" -type f -name "*.md" | while read MD_FILE; do
-      # Extraer tema del nombre del repositorio (simplemente usamos el nombre)
-      THEME=$(basename "$REPO")
-      DEST_DIR="$BASE_PATH/aws_docs_fuentes/$THEME"
-      mkdir -p "$DEST_DIR"
+  if [ -d "$REPOS_DIR/$REPO" ]; then
+    echo "📄 Extrayendo archivos .md del repositorio $REPO..."
+    mkdir -p "$OUTPUT_DIR/$REPO"
+    
+    # Encontrar todos los archivos .md y extraer su contenido
+    find "$REPOS_DIR/$REPO" -type f -name "*.md" | while read md_file; do
+      repo_name=$(basename "$REPO")
+      theme="${repo_name}"  # El nombre del repositorio será la temática
+      output_file="$OUTPUT_DIR/$theme.md"
 
-      # Copiar el archivo .md al directorio correspondiente
-      cp "$MD_FILE" "$DEST_DIR"
-      echo "📄 Copiado: $MD_FILE a $DEST_DIR"
+      echo "🔎 Procesando archivo: $md_file"
+
+      # Extraer el contenido del archivo .md
+      cat "$md_file" >> "$output_file"
+      echo -e "\n\n---\n\n" >> "$output_file"  # Separador entre archivos
     done
   fi
 done
 
-echo "✅ Todos los archivos .md organizados."
+# Paso 2: Unificar los .md por temática (nombre del repositorio)
+echo "📚 Unificando los archivos .md por temática..."
 
-# Paso 3: Comprimir archivos grandes si es necesario
-echo "🔍 Comprobando el tamaño de los archivos .md..."
+# Unificar el contenido
+for REPO in $REPO_LIST; do
+  theme="${REPO}"
+  theme_file="$OUTPUT_DIR/$theme.md"
 
-find "$BASE_PATH/aws_docs_fuentes" -type f -name "*.md" | while read MD_FILE; do
-  FILE_SIZE_MB=$(du -m "$MD_FILE" | cut -f1)
-  if [ "$FILE_SIZE_MB" -gt "$MAX_FILE_SIZE_MB" ]; then
-    echo "⚠️ El archivo $MD_FILE excede el tamaño máximo permitido ($MAX_FILE_SIZE_MB MB). Compriéndolo..."
-    gzip "$MD_FILE"
-    echo "✅ Archivo comprimido: $MD_FILE"
-  else
-    echo "✅ El archivo $MD_FILE está dentro del límite de tamaño."
+  # Si el archivo .md generado tiene un tamaño mayor que el límite (max 200MB o 500,000 palabras), lo dividimos
+  if [ -f "$theme_file" ]; then
+    file_size=$(stat -c %s "$theme_file")
+    word_count=$(wc -w < "$theme_file")
+
+    if [ $file_size -gt $MAX_FILE_SIZE ] || [ $word_count -gt $MAX_WORDS ]; then
+      echo "⚠️ El archivo $theme.md excede el tamaño o número de palabras permitido, se dividirá en partes."
+
+      # Dividir el archivo en fragmentos más pequeños (si es necesario)
+      split -l $MAX_WORDS "$theme_file" "$OUTPUT_DIR/${theme}_part_"
+      
+      # Limpiar el archivo original si fue dividido
+      rm "$theme_file"
+    fi
   fi
 done
 
-echo "✅ Proceso de organización y compresión completado."
+echo "✅ Procesamiento completado. Archivos generados en '$OUTPUT_DIR'."
 
-# Paso 4: Confirmación de los archivos organizados
-echo "📁 Archivos organizados en $BASE_PATH/aws_docs_fuentes"
+# Paso 3: Listar los archivos generados
+echo "📁 Archivos generados: "
+find "$OUTPUT_DIR" -type f -name "*.md" -exec ls -lh {} \;
+
+# Aquí podría ir la lógica de subida, pero ahora simplemente tenemos los archivos listos para ser verificados o subidos más tarde.

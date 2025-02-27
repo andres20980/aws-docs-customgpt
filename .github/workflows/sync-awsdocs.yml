@@ -11,33 +11,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Paso 1: Checkout del repositorio
       - name: 📥 Checkout del repositorio
         uses: actions/checkout@v4
         with:
           submodules: true
           fetch-depth: 0
 
+      # Paso 2: Configuración de Git para submódulos
       - name: 🛠️ Configurar Git para submódulos
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
+      # Paso 3: Verificar permisos de escritura en el repositorio
       - name: 🔍 Comprobar permisos de escritura en el repositorio
         run: |
           echo "Verificando permisos de escritura en el repositorio..."
           git ls-remote https://github.com/${{ github.repository }} || exit 1
         continue-on-error: false  # Esto hará que el job falle si hay un error al verificar permisos
 
+      # Paso 4: Limpiar el entorno de submódulos
       - name: 🧹 Limpiar el entorno de submódulos
         run: |
           git submodule deinit -f .
           rm -rf .gitmodules
           rm -rf repos/*
 
-      - name: 🔍 Comprobar permisos y actualizar submódulos
+      # Paso 5: Sincronizar submódulos (sin detenerse por errores)
+      - name: 🔄 Sincronizar submódulos (sin parar en errores)
+        run: |
+          git submodule update --init --recursive || true
+
+      # Paso 6: Ejecutar el script de descarga y organización
+      - name: 🧑‍💻 Ejecutar el script de sincronización
         run: |
           bash src/descargar_awsdocs.sh
 
+      # Paso 7: Commit y push de los cambios
       - name: 🔄 Commit y push de cambios
         run: |
           git add .
@@ -46,4 +57,3 @@ jobs:
           else
             git commit -m "🔄 Actualización automática de submódulos de AWS Docs"
             git push
-          fi
