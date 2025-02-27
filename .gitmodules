@@ -223,3 +223,6 @@
 [submodule "repos/awsdocs/amazon-kinesis-data-analytics-developer-guide"]
 	path = repos/awsdocs/amazon-kinesis-data-analytics-developer-guide
 	url = https://github.com/awsdocs/amazon-kinesis-data-analytics-developer-guide.git
+[submodule "repos/awsdocs/amazon-redshift-management-guide"]
+	path = repos/awsdocs/amazon-redshift-management-guide
+	url = https://github.com/awsdocs/amazon-redshift-management-guide.git
