@@ -214,3 +214,6 @@
 [submodule "repos/awsdocs/aws-cloud9-user-guide"]
 	path = repos/awsdocs/aws-cloud9-user-guide
 	url = https://github.com/awsdocs/aws-cloud9-user-guide.git
+[submodule "repos/awsdocs/aws-elastic-beanstalk-developer-guide"]
+	path = repos/awsdocs/aws-elastic-beanstalk-developer-guide
+	url = https://github.com/awsdocs/aws-elastic-beanstalk-developer-guide.git
