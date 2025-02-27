@@ -130,3 +130,6 @@
 [submodule "repos/awsdocs/aws-artifact-user-guide"]
 	path = repos/awsdocs/aws-artifact-user-guide
 	url = https://github.com/awsdocs/aws-artifact-user-guide.git
+[submodule "repos/awsdocs/amazon-transcoder-developer-guide"]
+	path = repos/awsdocs/amazon-transcoder-developer-guide
+	url = https://github.com/awsdocs/amazon-transcoder-developer-guide.git
