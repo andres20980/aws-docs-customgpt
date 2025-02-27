@@ -31,3 +31,6 @@
 [submodule "repos/awsdocs/aws-powershell-user-guide"]
 	path = repos/awsdocs/aws-powershell-user-guide
 	url = https://github.com/awsdocs/aws-powershell-user-guide.git
+[submodule "repos/awsdocs/aws-doc-sdk-examples"]
+	path = repos/awsdocs/aws-doc-sdk-examples
+	url = https://github.com/awsdocs/aws-doc-sdk-examples.git
