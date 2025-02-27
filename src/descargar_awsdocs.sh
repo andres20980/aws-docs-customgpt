@@ -6,9 +6,20 @@ REPOS_DIR="repos"
 AWS_DOCS_ORG="https://github.com/awsdocs"
 BASE_PATH="$(pwd)"
 
-echo "🔍 Obteniendo lista de repositorios de AWS Docs desde GitHub..."
+echo "🔍 Verificando permisos de escritura en el repositorio..."
 
-# Obtener lista de repositorios (requiere `gh` CLI autenticado o usa `web scraping`)
+# Intentar realizar un cambio en el repositorio para verificar si los permisos son correctos
+git config --global user.name "github-actions"
+git config --global user.email "github-actions@github.com"
+
+# Verificar si podemos hacer un commit sin errores
+if ! git commit --allow-empty -m "Verificando permisos de escritura"; then
+  echo "❌ Error: No se pudo realizar un commit, los permisos pueden no estar configurados correctamente."
+  exit 1
+else
+  echo "✅ Permisos de escritura confirmados, continuando con la sincronización de submódulos..."
+fi
+
 REPO_LIST=$(curl -s "https://api.github.com/orgs/awsdocs/repos?per_page=100&page=1" | jq -r '.[].name')
 
 mkdir -p "$REPOS_DIR"
@@ -23,10 +34,19 @@ for REPO in $REPO_LIST; do
     (cd "$REPO" && git pull origin main || git pull origin master || echo "⚠️ Error en $REPO")
   fi
 
-  # Verificar y corregir problemas con los submódulos si los hay
+  # Verificar y reconfigurar submódulos
   echo "🔄 Comprobando y reconfigurando submódulos..."
   git submodule update --init --recursive || echo "⚠️ Error en la actualización de submódulos, lo corregimos..."
 
+  # Comprobar si el submódulo tiene una URL válida antes de intentar recursividad
+  SUBMODULES=$(git submodule status | awk '{print $2}')
+  for SUBMODULE in $SUBMODULES; do
+    SUBMODULE_URL=$(git config --file .gitmodules submodule.$SUBMODULE.url)
+    if [ -z "$SUBMODULE_URL" ]; then
+      echo "⚠️ El submódulo $SUBMODULE no tiene una URL definida, lo ignoraremos..."
+      git submodule deinit $SUBMODULE || echo "⚠️ Error desinicializando $SUBMODULE"
+    fi
+  done
 done
 
 cd "$BASE_PATH"
