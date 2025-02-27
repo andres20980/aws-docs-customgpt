@@ -169,3 +169,6 @@
 [submodule "repos/awsdocs/aws-serverlessrepo-developer-guide"]
 	path = repos/awsdocs/aws-serverlessrepo-developer-guide
 	url = https://github.com/awsdocs/aws-serverlessrepo-developer-guide.git
+[submodule "repos/awsdocs/amazon-kinesis-data-streams-developer-guide"]
+	path = repos/awsdocs/amazon-kinesis-data-streams-developer-guide
+	url = https://github.com/awsdocs/amazon-kinesis-data-streams-developer-guide.git
