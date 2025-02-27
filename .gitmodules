@@ -82,3 +82,6 @@
 [submodule "repos/awsdocs/aws-secrets-manager-docs"]
 	path = repos/awsdocs/aws-secrets-manager-docs
 	url = https://github.com/awsdocs/aws-secrets-manager-docs.git
+[submodule "repos/awsdocs/iam-user-guide"]
+	path = repos/awsdocs/iam-user-guide
+	url = https://github.com/awsdocs/iam-user-guide.git
