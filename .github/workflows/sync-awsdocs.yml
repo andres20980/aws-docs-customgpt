@@ -27,19 +27,13 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
 
-      # Paso 3: Verificar si los submódulos ya están actualizados
-      - name: 🔄 Verificar y actualizar submódulos si es necesario
-        run: |
-          echo "🔄 Verificando y actualizando submódulos..."
-          git submodule update --recursive --remote --merge || echo "Los submódulos ya están actualizados."
-
-      # Paso 4: Ejecutar script Bash para procesar los submódulos y enlaces
+      # Paso 3: Ejecutar script Bash para procesar los submódulos y enlaces
       - name: 🧑‍💻 Ejecutar script Bash para procesar los submódulos y enlaces
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: bash src/descargar_awsdocs.sh
 
-      # Paso 5: Verificar si hay archivos generados y subirlos
+      # Paso 4: Verificar si hay archivos generados y subirlos
       - name: 📤 Subir archivos generados
         run: |
           echo "🔄 Subiendo archivos generados..."
@@ -48,5 +42,5 @@ jobs:
             echo "No hay cambios para hacer commit."
           else
             git commit -m "Añadir archivos generados para AWS Docs y enlaces"
-            git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
+            git push
           fi
