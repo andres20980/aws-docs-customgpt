@@ -17,7 +17,7 @@ jobs:
       # Paso 2: Ejecutar el script para generar y subir el archivo .md
       - name: 🧑‍💻 Ejecutar script para generar 'holamundo.md'
         run: |
-          bash src/generate_hello_world.sh
+          bash src/descargar_awsdocs.sh
 
       # Paso 3: Commit y push de cambios
       - name: 🔄 Commit y push de cambios
