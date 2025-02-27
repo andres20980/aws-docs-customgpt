@@ -24,7 +24,7 @@ done
 
 # Asegúrate de que los submódulos estén correctamente inicializados
 echo "🔄 Inicializando y actualizando submódulos..."
-git submodule update --init --recursive
+git submodule update --init --recursive || echo "⚠️ Error al inicializar submódulos."
 
 # Procesar cada submódulo
 for REPO_DIR in "$REPOS_DIR"/*; do
@@ -34,7 +34,7 @@ for REPO_DIR in "$REPOS_DIR"/*; do
     echo "🔄 Procesando el submódulo: $REPO_NAME..."
 
     # Sincronizar el submódulo
-    git submodule update --remote "$REPO_DIR" || { echo "⚠️ Error al actualizar submódulo: $REPO_NAME"; exit 1; }
+    git submodule update --remote "$REPO_DIR" || { echo "⚠️ Error al actualizar submódulo: $REPO_NAME"; continue; }
 
     # Crear archivo de salida para cada repositorio
     OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
@@ -62,7 +62,7 @@ for REPO_DIR in "$REPOS_DIR"/*; do
     git add "$OUTPUT_FILE"
     git commit -m "Añadir archivo .md generado para $REPO_NAME"
     GIT_REPO_URL="https://x-access-token:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY.git"
-    git push "$GIT_REPO_URL" main || { echo "⚠️ Error al hacer push para $REPO_NAME"; exit 1; }
+    git push "$GIT_REPO_URL" main || { echo "⚠️ Error al hacer push para $REPO_NAME"; continue; }
 
     echo "✅ Archivo .md subido para $REPO_NAME"
   else
