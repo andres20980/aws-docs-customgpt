@@ -253,3 +253,6 @@
 [submodule "repos/awsdocs/amazon-athena-user-guide"]
 	path = repos/awsdocs/amazon-athena-user-guide
 	url = https://github.com/awsdocs/amazon-athena-user-guide.git
+[submodule "repos/awsdocs/aws-elemental-mediapackage-user-guide"]
+	path = repos/awsdocs/aws-elemental-mediapackage-user-guide
+	url = https://github.com/awsdocs/aws-elemental-mediapackage-user-guide.git
