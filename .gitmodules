@@ -268,3 +268,6 @@
 [submodule "repos/awsdocs/amazon-vpc-user-guide"]
 	path = repos/awsdocs/amazon-vpc-user-guide
 	url = https://github.com/awsdocs/amazon-vpc-user-guide.git
+[submodule "repos/awsdocs/amazon-ec2-user-guide"]
+	path = repos/awsdocs/amazon-ec2-user-guide
+	url = https://github.com/awsdocs/amazon-ec2-user-guide.git
