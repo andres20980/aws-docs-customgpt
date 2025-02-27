@@ -1,34 +1,64 @@
-name: Sync and Upload AWS Docs Submodules
+#!/bin/bash
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+set -e
 
-jobs:
-  sync-repos:
-    runs-on: ubuntu-latest
+# Directorios de trabajo
+BASE_PATH="$(pwd)"
+REPOS_DIR="repos"  # Directorio donde se encuentran los submódulos
+OUTPUT_DIR="fuentes"  # Directorio donde se generarán los archivos .md
 
-    steps:
-      # Paso 1: Checkout del repositorio
-      - name: 📥 Checkout del repositorio
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-          fetch-depth: 0
+# Crear el directorio de salida si no existe
+mkdir -p "$OUTPUT_DIR"
+echo "✅ Directorio de salida '$OUTPUT_DIR' creado o ya existente."
 
-      # Paso 2: Configurar Git con el token personal
-      - name: 🔑 Configurar Git con token personal
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
+# Asegúrate de que los submódulos estén correctamente inicializados
+echo "🔄 Actualizando submódulos..."
+git submodule update --init --recursive
 
-      # Paso 3: Ejecutar script Bash
-      - name: 🧑‍💻 Ejecutar script Bash
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        run: bash src/descargar_awsdocs.sh
+# Recorremos cada submódulo uno por uno
+for REPO_DIR in "$REPOS_DIR"/*; do
+  if [ -d "$REPO_DIR" ]; then
+    REPO_NAME=$(basename "$REPO_DIR")  # Nombre del repositorio (submódulo)
+    
+    echo "🔄 Procesando el submódulo: $REPO_NAME..."
+
+    # Sincronizar el submódulo
+    git submodule update --remote "$REPO_NAME" || { echo "⚠️ Error al actualizar submódulo: $REPO_NAME"; exit 1; }
+
+    # Crear archivo de salida para cada repositorio
+    OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
+    echo "📄 Generando archivo unificado para $REPO_NAME..."
+
+    # Inicializamos el archivo de salida
+    > "$OUTPUT_FILE"
+    echo "  ✅ Archivo de salida vacío creado: $OUTPUT_FILE"
+
+    # Buscar todos los archivos dentro del submódulo, incluyendo texto, markdown, json, etc.
+    find "$REPO_DIR" -type f | while read -r FILE; do
+      if file "$FILE" | grep -q 'text'; then
+        echo "    🔍 Procesando archivo: $FILE"
+        cat "$FILE" >> "$OUTPUT_FILE"
+        echo -e "\n\n" >> "$OUTPUT_FILE"  # Añadir separación entre archivos de texto
+      else
+        echo "    ⚠️ Saltando archivo no textual: $FILE"
+      fi
+    done
+
+    echo "✅ Archivo generado: $OUTPUT_FILE"
+
+    # Subir el archivo generado a tu repositorio con autenticación explícita usando el token
+    echo "🔄 Añadiendo el archivo .md generado a git..."
+    git add "$OUTPUT_FILE"
+    git commit -m "Añadir archivo .md generado para $REPO_NAME"
+    
+    # URL de acceso con token
+    GIT_REPO_URL="https://x-access-token:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY.git"
+    git push "$GIT_REPO_URL" main || { echo "⚠️ Error al hacer push para $REPO_NAME"; exit 1; }
+
+    echo "✅ Archivo .md subido para $REPO_NAME"
+  else
+    echo "⚠️ No se encontró el directorio del submódulo: $REPO_DIR"
+  fi
+done
+
+echo "✅ Proceso de unificación y subida de archivos .md completado."
