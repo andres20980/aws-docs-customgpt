@@ -127,3 +127,6 @@
 [submodule "repos/awsdocs/aws-cost-management-user-guide"]
 	path = repos/awsdocs/aws-cost-management-user-guide
 	url = https://github.com/awsdocs/aws-cost-management-user-guide.git
+[submodule "repos/awsdocs/aws-artifact-user-guide"]
+	path = repos/awsdocs/aws-artifact-user-guide
+	url = https://github.com/awsdocs/aws-artifact-user-guide.git
