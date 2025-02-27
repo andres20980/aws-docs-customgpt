@@ -7,3 +7,6 @@
 [submodule "repos/awsdocs/aws-java-developer-guide"]
 	path = repos/awsdocs/aws-java-developer-guide
 	url = https://github.com/awsdocs/aws-java-developer-guide.git
+[submodule "repos/awsdocs/aws-xamarin-developer-guide"]
+	path = repos/awsdocs/aws-xamarin-developer-guide
+	url = https://github.com/awsdocs/aws-xamarin-developer-guide.git
