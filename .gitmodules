@@ -19,3 +19,6 @@
 [submodule "repos/awsdocs/aws-android-developer-guide"]
 	path = repos/awsdocs/aws-android-developer-guide
 	url = https://github.com/awsdocs/aws-android-developer-guide.git
+[submodule "repos/awsdocs/aws-toolkit-eclipse-user-guide"]
+	path = repos/awsdocs/aws-toolkit-eclipse-user-guide
+	url = https://github.com/awsdocs/aws-toolkit-eclipse-user-guide.git
