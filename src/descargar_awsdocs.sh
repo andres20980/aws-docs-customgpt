@@ -22,7 +22,7 @@ for REPO_DIR in "$REPOS_DIR"/*; do
     echo "🔄 Procesando el submódulo: $REPO_NAME..."
 
     # Sincronizar el submódulo
-    git submodule update --remote "$REPO_NAME" || { echo "⚠️ Error al actualizar submódulo: $REPO_NAME"; exit 1; }
+    git submodule update --remote "$REPO_DIR" || { echo "⚠️ Error al actualizar submódulo: $REPO_NAME"; exit 1; }
 
     # Crear archivo de salida para cada repositorio
     OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
@@ -33,24 +33,25 @@ for REPO_DIR in "$REPOS_DIR"/*; do
     echo "  ✅ Archivo de salida vacío creado: $OUTPUT_FILE"
 
     # Buscar todos los archivos dentro del submódulo, incluso los binarios
-    find "$REPO_DIR" -type f | while read -r FILE; do
+    find "$REPO_DIR" -type f | xargs -I {} bash -c '
+    FILE="{}"
       echo "    🔍 Procesando archivo: $FILE"
 
       # Si el archivo es de texto, lo concatenamos al archivo de salida
-      if file "$FILE" | grep -q 'text'; then
+        >> "$OUTPUT_FILE" cat "$FILE"
         cat "$FILE" >> "$OUTPUT_FILE"
-        echo -e "\n\n" >> "$OUTPUT_FILE"  # Añadir separación entre archivos de texto
+        printf "\n\n" >> "$OUTPUT_FILE"  # Añadir separación entre archivos de texto
       else
         echo "    ⚠️ Saltando archivo binario o no texto: $FILE"
       fi
-    done
+    '
 
     echo "✅ Archivo generado: $OUTPUT_FILE"
 
     # Subir el archivo generado a tu repositorio
     echo "🔄 Añadiendo el archivo .md generado a git..."
     git add "$OUTPUT_FILE"
-    git commit -m "Añadir archivo .md generado para $REPO_NAME"
+    git commit -m "Add generated .md file for $REPO_NAME"
     git push || { echo "⚠️ Error al hacer push para $REPO_NAME"; exit 1; }
 
     echo "✅ Archivo .md subido para $REPO_NAME"
