@@ -1,79 +1,46 @@
 #!/bin/bash
 
-set -e
-
-# Directorios de trabajo
-BASE_PATH="$(pwd)"
-REPOS_DIR="repos"  # Directorio donde se encuentran los submódulos
-OUTPUT_DIR="fuentes"  # Directorio donde se generarán los archivos .md
-
-# Limpiar directorios previos si existen
+# Limpiar directorios previos
 echo "🧹 Limpiando directorios previos..."
-rm -rf "$REPOS_DIR"
-rm -rf "$OUTPUT_DIR"
-mkdir -p "$OUTPUT_DIR"
-echo "✅ Directorio '$OUTPUT_DIR' creado."
+rm -rf repos fuentes
+mkdir -p fuentes repos
 
-# Asegúrate de que los submódulos estén correctamente inicializados
+# Descargar submódulos
 echo "🔄 Actualizando submódulos..."
-git submodule update --init --recursive
+git submodule update --init --recursive --quiet
 
-# Recorremos cada submódulo uno por uno
-for REPO_DIR in "$REPOS_DIR"/*; do
-  if [ -d "$REPO_DIR" ]; then
-    REPO_NAME=$(basename "$REPO_DIR")  # Nombre del repositorio (submódulo)
-    
-    echo "🔄 Comprobando si el submódulo '$REPO_NAME' está actualizado..."
-    git -C "$REPO_DIR" pull || { echo "⚠️ Error al actualizar el submódulo: $REPO_NAME"; continue; }
+# Recorremos los repositorios de AWS Docs
+for repo in $(ls repos/awsdocs); do
+    echo "🔍 Procesando submódulo: $repo..."
 
-    # Crear archivo de salida para cada repositorio
-    OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
-    
-    # Comprobar si el archivo ya existe
-    if [ -f "$OUTPUT_FILE" ]; then
-      echo "⚠️ El archivo para $REPO_NAME ya existe. Se saltará la creación."
-      continue
+    # Repositorio y ruta del archivo md de salida
+    output_file="fuentes/awsdocs/$repo.md"
+
+    # Verificar si ya se generó el archivo
+    if [ -f "$output_file" ]; then
+        echo "El archivo para $repo ya existe, omitiendo creación..."
+        continue
     fi
-    
-    echo "📄 Generando archivo unificado para '$REPO_NAME'..."
-    # Inicializamos el archivo de salida
-    > "$OUTPUT_FILE"
-    echo "  ✅ Archivo de salida vacío creado: $OUTPUT_FILE"
 
-    # Buscar todos los archivos dentro del submódulo, incluyendo texto, markdown, json, etc.
-    find "$REPO_DIR" -type f | while read -r FILE; do
-      if file "$FILE" | grep -q 'text'; then
-        echo "    🔍 Procesando archivo: $FILE"
-        cat "$FILE" >> "$OUTPUT_FILE"
-        echo -e "\n\n" >> "$OUTPUT_FILE"  # Añadir separación entre archivos de texto
-      else
-        echo "    ⚠️ Saltando archivo no textual: $FILE"
-      fi
+    # Si no existe, procesamos los archivos dentro del repositorio
+    echo "💾 Generando archivo unificado para $repo..."
+    touch "$output_file"
+    for file in $(find "repos/awsdocs/$repo" -type f -name "*.md" -o -name "*.txt"); do
+        cat "$file" >> "$output_file"
     done
 
-    echo "✅ Archivo generado: $OUTPUT_FILE"
+    # Filtrar enlaces de docs.aws.amazon.com
+    grep -o 'http://docs.aws.amazon.com/[^"]*' "$output_file" > "fuentes/links_$repo.txt"
 
-    # Buscar enlaces a http://docs.aws.amazon.com/ y generar archivos adicionales
-    echo "🔍 Buscando enlaces a http://docs.aws.amazon.com/..."
-    grep -o 'http://docs.aws.amazon.com/[^"]*' "$OUTPUT_FILE" | while read -r LINK; do
-      # Crear archivo adicional para cada enlace encontrado
-      LINK_FILE="$OUTPUT_DIR/$(echo "$LINK" | sed 's/[^a-zA-Z0-9]/_/g').md"
-      echo "📄 Generando archivo para el enlace '$LINK'..."
-      echo "# Enlace: $LINK" > "$LINK_FILE"
-      echo "🔗 Enlace encontrado en $REPO_NAME" >> "$LINK_FILE"
-    done
-
-    # Subir los archivos generados para cada submódulo
-    echo "🔄 Añadiendo el archivo .md generado a git..."
-    git add "$OUTPUT_FILE"
-    git commit -m "Añadir archivo .md generado para $REPO_NAME"
-    git push "https://x-access-token:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY.git" main || { echo "⚠️ Error al hacer push para $REPO_NAME"; exit 1; }
-
-    echo "✅ Archivo .md subido para $REPO_NAME"
-  else
-    echo "⚠️ No se encontró el directorio del submódulo: $REPO_DIR"
-  fi
+    # Limpiar el archivo de salida si está vacío
+    if [ ! -s "$output_file" ]; then
+        echo "El archivo $output_file está vacío, eliminando..."
+        rm -f "$output_file"
+    fi
 done
 
-# Procesar enlaces adicionales encontrados en los repositorios y crear md para cada uno
-echo "✅ Proceso de unificación y subida de archivos .md completado."
+# Subir los archivos generados
+echo "🎉 Todos los archivos generados. Preparando para subir..."
+
+# Este paso ahora solo sube si hay cambios en el repositorio
+git diff --exit-code --quiet || git commit -am "Actualización de archivos de documentación de AWS"
