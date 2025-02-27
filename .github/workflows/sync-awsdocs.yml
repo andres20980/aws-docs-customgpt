@@ -23,7 +23,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
 
       - name: 🚀 Ejecutar script de sincronización
-        run: bash descargar_awsdocs.sh
+        run: bash src/descargar_awsdocs.sh
 
       - name: 🔑 Autenticar con GitHub usando GH_TOKEN
         env:
