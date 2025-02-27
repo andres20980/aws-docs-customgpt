@@ -118,3 +118,6 @@
 [submodule "repos/awsdocs/amazon-transcribe-developer-guide"]
 	path = repos/awsdocs/amazon-transcribe-developer-guide
 	url = https://github.com/awsdocs/amazon-transcribe-developer-guide.git
+[submodule "repos/awsdocs/amazon-dynamodb-developer-guide"]
+	path = repos/awsdocs/amazon-dynamodb-developer-guide
+	url = https://github.com/awsdocs/amazon-dynamodb-developer-guide.git
