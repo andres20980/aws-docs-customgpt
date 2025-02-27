@@ -17,6 +17,10 @@ echo "📄 Generando archivo 'holamundo.md'..."
 echo "# Hola Mundo" > "$OUTPUT_FILE"
 echo "✅ Archivo 'holamundo.md' generado."
 
+# Configurar el nombre y correo del usuario para el commit
+git config --global user.name "github-actions"
+git config --global user.email "github-actions@github.com"
+
 # Subir el archivo generado a tu repositorio
 echo "🔄 Añadiendo el archivo .md generado a git..."
 git add "$OUTPUT_FILE"
