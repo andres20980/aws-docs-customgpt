@@ -21,18 +21,16 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git submodule update --init --recursive || echo "⚠️ Error en la actualización de submódulos, lo corregimos..."
 
-      - name: 🚀 Ejecutar script de sincronización
-        run: bash src/descargar_awsdocs.sh
-
-      - name: 🔑 Autenticar con GitHub usando PERSONAL_ACCESS_TOKEN
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: 🧹 Limpiar el entorno de submódulos
         run: |
-          git remote set-url origin https://github.com/andres20980/aws-docs-customgpt.git
-          git config --global credential.helper 'cache --timeout=3600'
-          echo "https://github-actions:${GH_TOKEN}@github.com" > ~/.git-credentials
+          git submodule deinit -f .
+          rm -rf .gitmodules
+          rm -rf repos/*
+
+      - name: 🔍 Comprobar permisos y actualizar submódulos
+        run: |
+          bash src/descargar_awsdocs.sh
 
       - name: 🔄 Commit y push de cambios
         run: |
