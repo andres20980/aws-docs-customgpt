@@ -2,13 +2,16 @@
 
 set -e
 
-# Directorio de trabajo
+# Directorios de trabajo
 BASE_PATH="$(pwd)"
 REPOS_DIR="repos"  # Directorio donde se encuentran los submódulos
 OUTPUT_DIR="fuentes"  # Directorio donde se generarán los archivos .md
 
 # Crear el directorio de salida si no existe
 mkdir -p "$OUTPUT_DIR"
+
+# Asegúrate de que los submódulos estén correctamente inicializados
+git submodule update --init --recursive
 
 # Recorremos cada submódulo uno por uno
 for REPO_DIR in "$REPOS_DIR"/*; do
@@ -20,14 +23,14 @@ for REPO_DIR in "$REPOS_DIR"/*; do
     # Sincronizar el submódulo
     git submodule update --remote "$REPO_NAME"
 
-    # Creamos un archivo de salida para cada repositorio
+    # Crear archivo de salida para cada repositorio
     OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
     echo "📄 Generando archivo unificado para $REPO_NAME..."
 
     # Inicializamos el archivo de salida
     > "$OUTPUT_FILE"
 
-    # Buscamos y unificamos todos los archivos de texto dentro del submódulo
+    # Buscar y unificar todos los archivos de texto dentro del submódulo
     find "$REPO_DIR" -type f \( -iname "*.md" -o -iname "*.txt" \) | while read -r FILE; do
       echo "  🔍 Procesando archivo: $FILE"
       cat "$FILE" >> "$OUTPUT_FILE"
