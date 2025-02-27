@@ -1,0 +1,35 @@
+name: Sync AWS Docs Submodules
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync-repos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout del repositorio
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: 🛠️ Configurar Git para submódulos
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: 🚀 Ejecutar script de sincronización
+        run: bash src/descargar_awsdocs.sh
+
+      - name: 🔄 Commit y push de cambios
+        run: |
+          git add .
+          if git diff --staged --quiet; then
+            echo "No hay cambios para hacer commit."
+          else
+            git commit -m "🔄 Actualización automática de submódulos de AWS Docs"
+            git push
+          fi
