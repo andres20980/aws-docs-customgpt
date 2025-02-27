@@ -133,3 +133,6 @@
 [submodule "repos/awsdocs/amazon-transcoder-developer-guide"]
 	path = repos/awsdocs/amazon-transcoder-developer-guide
 	url = https://github.com/awsdocs/amazon-transcoder-developer-guide.git
+[submodule "repos/awsdocs/aws-certificate-user-guide"]
+	path = repos/awsdocs/aws-certificate-user-guide
+	url = https://github.com/awsdocs/aws-certificate-user-guide.git
