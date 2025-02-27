@@ -85,3 +85,6 @@
 [submodule "repos/awsdocs/iam-user-guide"]
 	path = repos/awsdocs/iam-user-guide
 	url = https://github.com/awsdocs/iam-user-guide.git
+[submodule "repos/awsdocs/amazon-cloudfront-developer-guide"]
+	path = repos/awsdocs/amazon-cloudfront-developer-guide
+	url = https://github.com/awsdocs/amazon-cloudfront-developer-guide.git
