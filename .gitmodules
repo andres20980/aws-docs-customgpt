@@ -157,3 +157,6 @@
 [submodule "repos/awsdocs/aws-dms-step-by-step"]
 	path = repos/awsdocs/aws-dms-step-by-step
 	url = https://github.com/awsdocs/aws-dms-step-by-step.git
+[submodule "repos/awsdocs/amazon-rekognition-developer-guide"]
+	path = repos/awsdocs/amazon-rekognition-developer-guide
+	url = https://github.com/awsdocs/amazon-rekognition-developer-guide.git
