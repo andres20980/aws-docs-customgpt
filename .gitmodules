@@ -232,3 +232,6 @@
 [submodule "repos/awsdocs/amazon-ecs-developer-guide"]
 	path = repos/awsdocs/amazon-ecs-developer-guide
 	url = https://github.com/awsdocs/amazon-ecs-developer-guide.git
+[submodule "repos/awsdocs/AWS-Kinesis-Video-Documentation"]
+	path = repos/awsdocs/AWS-Kinesis-Video-Documentation
+	url = https://github.com/awsdocs/AWS-Kinesis-Video-Documentation.git
