@@ -10,3 +10,6 @@
 [submodule "repos/awsdocs/aws-xamarin-developer-guide"]
 	path = repos/awsdocs/aws-xamarin-developer-guide
 	url = https://github.com/awsdocs/aws-xamarin-developer-guide.git
+[submodule "repos/awsdocs/aws-unity-developer-guide"]
+	path = repos/awsdocs/aws-unity-developer-guide
+	url = https://github.com/awsdocs/aws-unity-developer-guide.git
