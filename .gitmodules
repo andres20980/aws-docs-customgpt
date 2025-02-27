@@ -277,3 +277,6 @@
 [submodule "repos/awsdocs/amazon-workspaces-administration-guide"]
 	path = repos/awsdocs/amazon-workspaces-administration-guide
 	url = https://github.com/awsdocs/amazon-workspaces-administration-guide.git
+[submodule "repos/awsdocs/elb-user-guide"]
+	path = repos/awsdocs/elb-user-guide
+	url = https://github.com/awsdocs/elb-user-guide.git
