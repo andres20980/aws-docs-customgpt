@@ -58,3 +58,6 @@
 [submodule "repos/awsdocs/aws-waf-and-shield-advanced-developer-guide"]
 	path = repos/awsdocs/aws-waf-and-shield-advanced-developer-guide
 	url = https://github.com/awsdocs/aws-waf-and-shield-advanced-developer-guide.git
+[submodule "repos/awsdocs/aws-encryption-sdk-docs"]
+	path = repos/awsdocs/aws-encryption-sdk-docs
+	url = https://github.com/awsdocs/aws-encryption-sdk-docs.git
