@@ -46,3 +46,6 @@
 [submodule "repos/awsdocs/aws-example-apps"]
 	path = repos/awsdocs/aws-example-apps
 	url = https://github.com/awsdocs/aws-example-apps.git
+[submodule "repos/awsdocs/aws-java-developer-guide-v2"]
+	path = repos/awsdocs/aws-java-developer-guide-v2
+	url = https://github.com/awsdocs/aws-java-developer-guide-v2.git
