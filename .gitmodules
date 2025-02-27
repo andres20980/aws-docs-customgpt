@@ -76,3 +76,6 @@
 [submodule "repos/awsdocs/amazon-cloud-directory-developer-guide"]
 	path = repos/awsdocs/amazon-cloud-directory-developer-guide
 	url = https://github.com/awsdocs/amazon-cloud-directory-developer-guide.git
+[submodule "repos/awsdocs/aws-single-sign-on-user-guide"]
+	path = repos/awsdocs/aws-single-sign-on-user-guide
+	url = https://github.com/awsdocs/aws-single-sign-on-user-guide.git
