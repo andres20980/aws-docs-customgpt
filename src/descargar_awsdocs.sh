@@ -20,7 +20,7 @@ git add "$OUTPUT_FILE"
 git commit -m "🚀 Añadir archivo holamundo.md"
 
 # Intentar el push con autenticación explícita
-GIT_REPO_URL="https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+GIT_REPO_URL="https://x-access-token:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY.git"
 git push "$GIT_REPO_URL" main || { echo "⚠️ Error al hacer push"; exit 1; }
 
 echo "✅ Archivo subido correctamente."
