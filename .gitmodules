@@ -4,3 +4,6 @@
 [submodule "repos/awsdocs/aws-doc-shared-content"]
 	path = repos/awsdocs/aws-doc-shared-content
 	url = https://github.com/awsdocs/aws-doc-shared-content.git
+[submodule "repos/awsdocs/aws-java-developer-guide"]
+	path = repos/awsdocs/aws-java-developer-guide
+	url = https://github.com/awsdocs/aws-java-developer-guide.git
