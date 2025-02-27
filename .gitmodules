@@ -37,3 +37,6 @@
 [submodule "repos/awsdocs/aws-cpp-developer-guide"]
 	path = repos/awsdocs/aws-cpp-developer-guide
 	url = https://github.com/awsdocs/aws-cpp-developer-guide.git
+[submodule "repos/awsdocs/aws-go-developer-guide"]
+	path = repos/awsdocs/aws-go-developer-guide
+	url = https://github.com/awsdocs/aws-go-developer-guide.git
