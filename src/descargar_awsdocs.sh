@@ -11,7 +11,7 @@ REPO_LIST=$(curl -s "https://api.github.com/orgs/awsdocs/repos?per_page=100&page
 MAX_FILE_SIZE=200000000  # 200MB en bytes
 MAX_WORDS=500000  # Máximo de palabras permitido por fuente
 
-echo "🔍 Obteniendo lista de repositorios de AWS Docs desde GitHub..."
+echo "🔍 Iniciando la sincronización de submódulos..."
 
 # Limpiar entorno previo
 rm -rf "$REPOS_DIR" "$OUTPUT_DIR"
@@ -23,11 +23,11 @@ cd "$REPOS_DIR"
 # Sincronizar submódulos
 for REPO in $REPO_LIST; do
   if [ ! -d "$REPO" ]; then
-    echo "🆕 Agregando submódulo para $REPO..."
-    git submodule add "$AWS_DOCS_ORG/$REPO.git" "$REPO" || echo "⚠️ Error agregando $REPO"
+    echo "🆕 Agregando submódulo para $REPO..." >> "$BASE_PATH/sync.log"
+    git submodule add "$AWS_DOCS_ORG/$REPO.git" "$REPO" >> "$BASE_PATH/sync.log" 2>&1 || echo "⚠️ Error agregando $REPO" >> "$BASE_PATH/sync.log"
   else
-    echo "🔄 Actualizando submódulo $REPO..."
-    (cd "$REPO" && git pull origin main || git pull origin master || echo "⚠️ Error en $REPO")
+    echo "🔄 Actualizando submódulo $REPO..." >> "$BASE_PATH/sync.log"
+    (cd "$REPO" && git pull origin main >> "$BASE_PATH/sync.log" 2>&1 || git pull origin master >> "$BASE_PATH/sync.log" 2>&1 || echo "⚠️ Error en $REPO" >> "$BASE_PATH/sync.log")
   fi
 done
 
@@ -39,7 +39,7 @@ echo "✅ Submódulos sincronizados. Procesando los archivos .md..."
 # Paso 1: Extraer textos de todos los repositorios .md
 for REPO in $REPO_LIST; do
   if [ -d "$REPOS_DIR/$REPO" ]; then
-    echo "📄 Extrayendo archivos .md del repositorio $REPO..."
+    echo "📄 Extrayendo archivos .md del repositorio $REPO..." >> "$BASE_PATH/extract.log"
     mkdir -p "$OUTPUT_DIR/$REPO"
     
     # Encontrar todos los archivos .md y extraer su contenido
@@ -48,9 +48,7 @@ for REPO in $REPO_LIST; do
       theme="${repo_name}"  # El nombre del repositorio será la temática
       output_file="$OUTPUT_DIR/$theme.md"
 
-      echo "🔎 Procesando archivo: $md_file"
-
-      # Extraer el contenido del archivo .md
+      echo "🔎 Procesando archivo: $md_file" >> "$BASE_PATH/extract.log"
       cat "$md_file" >> "$output_file"
       echo -e "\n\n---\n\n" >> "$output_file"  # Separador entre archivos
     done
@@ -58,7 +56,7 @@ for REPO in $REPO_LIST; do
 done
 
 # Paso 2: Unificar los .md por temática (nombre del repositorio)
-echo "📚 Unificando los archivos .md por temática..."
+echo "📚 Unificando los archivos .md por temática..." >> "$BASE_PATH/unify.log"
 
 # Unificar el contenido
 for REPO in $REPO_LIST; do
@@ -71,7 +69,7 @@ for REPO in $REPO_LIST; do
     word_count=$(wc -w < "$theme_file")
 
     if [ $file_size -gt $MAX_FILE_SIZE ] || [ $word_count -gt $MAX_WORDS ]; then
-      echo "⚠️ El archivo $theme.md excede el tamaño o número de palabras permitido, se dividirá en partes."
+      echo "⚠️ El archivo $theme.md excede el tamaño o número de palabras permitido, se dividirá en partes." >> "$BASE_PATH/unify.log"
 
       # Dividir el archivo en fragmentos más pequeños (si es necesario)
       split -l $MAX_WORDS "$theme_file" "$OUTPUT_DIR/${theme}_part_"
@@ -85,7 +83,7 @@ done
 echo "✅ Procesamiento completado. Archivos generados en '$OUTPUT_DIR'."
 
 # Paso 3: Listar los archivos generados
-echo "📁 Archivos generados: "
-find "$OUTPUT_DIR" -type f -name "*.md" -exec ls -lh {} \;
+echo "📁 Archivos generados: " >> "$BASE_PATH/extract.log"
+find "$OUTPUT_DIR" -type f -name "*.md" -exec ls -lh {} \; >> "$BASE_PATH/extract.log"
 
 # Aquí podría ir la lógica de subida, pero ahora simplemente tenemos los archivos listos para ser verificados o subidos más tarde.

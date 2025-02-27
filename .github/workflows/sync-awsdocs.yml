@@ -57,3 +57,8 @@ jobs:
           else
             git commit -m "🔄 Actualización automática de submódulos de AWS Docs"
             git push
+          
+      # Paso 8: Subir archivos a NotebookLM (opcional, si decides automatizar más tarde)
+      # - name: 🚀 Subir archivos organizados
+      #   run: |
+      #     bash src/upload_to_notebooklm.sh
