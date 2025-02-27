@@ -52,3 +52,6 @@
 [submodule "repos/awsdocs/aws-mobile-developer-guide"]
 	path = repos/awsdocs/aws-mobile-developer-guide
 	url = https://github.com/awsdocs/aws-mobile-developer-guide.git
+[submodule "repos/awsdocs/aws-kms-developer-guide"]
+	path = repos/awsdocs/aws-kms-developer-guide
+	url = https://github.com/awsdocs/aws-kms-developer-guide.git
