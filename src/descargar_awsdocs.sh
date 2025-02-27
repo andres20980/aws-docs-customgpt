@@ -33,18 +33,18 @@ for REPO_DIR in "$REPOS_DIR"/*; do
     echo "  ✅ Archivo de salida vacío creado: $OUTPUT_FILE"
 
     # Buscar todos los archivos dentro del submódulo, incluso los binarios
-    find "$REPO_DIR" -type f | xargs -I {} bash -c '
-    FILE="{}"
+    find "$REPO_DIR" -type f | while read -r FILE; do
       echo "    🔍 Procesando archivo: $FILE"
-
-      # Si el archivo es de texto, lo concatenamos al archivo de salida
-        >> "$OUTPUT_FILE" cat "$FILE"
+      
+      # Verificar si el archivo es de texto
+      if file "$FILE" | grep -q text; then
+        # Si el archivo es de texto, lo concatenamos al archivo de salida
         cat "$FILE" >> "$OUTPUT_FILE"
         printf "\n\n" >> "$OUTPUT_FILE"  # Añadir separación entre archivos de texto
       else
         echo "    ⚠️ Saltando archivo binario o no texto: $FILE"
       fi
-    '
+    done
 
     echo "✅ Archivo generado: $OUTPUT_FILE"
 
