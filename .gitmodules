@@ -265,3 +265,6 @@
 [submodule "repos/awsdocs/aws-data-pipeline-developer-guide"]
 	path = repos/awsdocs/aws-data-pipeline-developer-guide
 	url = https://github.com/awsdocs/aws-data-pipeline-developer-guide.git
+[submodule "repos/awsdocs/amazon-vpc-user-guide"]
+	path = repos/awsdocs/amazon-vpc-user-guide
+	url = https://github.com/awsdocs/amazon-vpc-user-guide.git
