@@ -25,3 +25,6 @@
 [submodule "repos/awsdocs/aws-net-developer-guide"]
 	path = repos/awsdocs/aws-net-developer-guide
 	url = https://github.com/awsdocs/aws-net-developer-guide.git
+[submodule "repos/awsdocs/aws-toolkit-visual-studio-user-guide"]
+	path = repos/awsdocs/aws-toolkit-visual-studio-user-guide
+	url = https://github.com/awsdocs/aws-toolkit-visual-studio-user-guide.git
