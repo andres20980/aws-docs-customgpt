@@ -283,3 +283,6 @@
 [submodule "repos/awsdocs/elb-application-load-balancers-user-guide"]
 	path = repos/awsdocs/elb-application-load-balancers-user-guide
 	url = https://github.com/awsdocs/elb-application-load-balancers-user-guide.git
+[submodule "repos/awsdocs/aws-direct-connect-user-guide"]
+	path = repos/awsdocs/aws-direct-connect-user-guide
+	url = https://github.com/awsdocs/aws-direct-connect-user-guide.git
