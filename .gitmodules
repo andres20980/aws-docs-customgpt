@@ -49,3 +49,6 @@
 [submodule "repos/awsdocs/aws-java-developer-guide-v2"]
 	path = repos/awsdocs/aws-java-developer-guide-v2
 	url = https://github.com/awsdocs/aws-java-developer-guide-v2.git
+[submodule "repos/awsdocs/aws-mobile-developer-guide"]
+	path = repos/awsdocs/aws-mobile-developer-guide
+	url = https://github.com/awsdocs/aws-mobile-developer-guide.git
