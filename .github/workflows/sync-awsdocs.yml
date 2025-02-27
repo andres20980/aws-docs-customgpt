@@ -1,4 +1,4 @@
-name: Simple Sync and Upload
+name: Sync and Upload AWS Docs Submodules
 
 on:
   push:
@@ -15,7 +15,8 @@ jobs:
       - name: 📥 Checkout del repositorio
         uses: actions/checkout@v4
         with:
-          persist-credentials: false  # Necesario para usar el token personalizado
+          submodules: true
+          fetch-depth: 0  # Traer todos los commits y submódulos
 
       # Paso 2: Configurar Git con el token personal
       - name: 🔑 Configurar Git con token personal
@@ -26,8 +27,6 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
 
-      # Paso 3: Ejecutar script Bash
-      - name: 🧑‍💻 Ejecutar script Bash
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      # Paso 3: Ejecutar el script para procesar los submódulos y generar los archivos .md
+      - name: 🧑‍💻 Ejecutar script para procesar los submódulos y generar archivos .md
         run: bash src/descargar_awsdocs.sh
