@@ -151,3 +151,6 @@
 [submodule "repos/awsdocs/amazon-rds-user-guide"]
 	path = repos/awsdocs/amazon-rds-user-guide
 	url = https://github.com/awsdocs/amazon-rds-user-guide.git
+[submodule "repos/awsdocs/aws-dms-user-guide"]
+	path = repos/awsdocs/aws-dms-user-guide
+	url = https://github.com/awsdocs/aws-dms-user-guide.git
