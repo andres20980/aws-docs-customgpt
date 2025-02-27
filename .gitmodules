@@ -271,3 +271,6 @@
 [submodule "repos/awsdocs/amazon-ec2-user-guide"]
 	path = repos/awsdocs/amazon-ec2-user-guide
 	url = https://github.com/awsdocs/amazon-ec2-user-guide.git
+[submodule "repos/awsdocs/application-auto-scaling-user-guide"]
+	path = repos/awsdocs/application-auto-scaling-user-guide
+	url = https://github.com/awsdocs/application-auto-scaling-user-guide.git
