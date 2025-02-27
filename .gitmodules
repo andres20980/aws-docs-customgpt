@@ -139,3 +139,6 @@
 [submodule "repos/awsdocs/amazon-sumerian-user-guide"]
 	path = repos/awsdocs/amazon-sumerian-user-guide
 	url = https://github.com/awsdocs/amazon-sumerian-user-guide.git
+[submodule "repos/awsdocs/aws-cli-user-guide"]
+	path = repos/awsdocs/aws-cli-user-guide
+	url = https://github.com/awsdocs/aws-cli-user-guide.git
