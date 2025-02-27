@@ -27,7 +27,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
 
-      # Paso 3: Ejecutar script Bash
+      # Paso 3: Ejecutar script Bash para procesar los submódulos y enlaces
       - name: 🧑‍💻 Ejecutar script Bash para procesar los submódulos y enlaces
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -42,5 +42,5 @@ jobs:
             echo "No hay cambios para hacer commit."
           else
             git commit -m "Añadir archivos generados para AWS Docs y enlaces"
-            git push
+            git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
           fi
