@@ -41,7 +41,7 @@ for REPO_NAME in $REPOS; do
   echo "✅ Directorio '$REPO_OUTPUT_DIR' creado."
 
   # Crear archivo de salida para cada repositorio
-  OUTPUT_FILE="$REPO_OUTPUT_DIR/$REPO_NAME.md"
+  OUTPUT_FILE="$REPO_OUTPUT_DIR.md"
   echo "📄 Generando archivo unificado para $REPO_NAME..."
 
   # Inicializamos el archivo de salida
