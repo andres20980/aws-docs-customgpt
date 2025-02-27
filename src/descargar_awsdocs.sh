@@ -9,19 +9,20 @@ OUTPUT_DIR="fuentes"  # Directorio donde se generarán los archivos .md
 
 # Crear el directorio de salida si no existe
 mkdir -p "$OUTPUT_DIR"
+echo "✅ Directorio de salida '$OUTPUT_DIR' creado o ya existente."
 
 # Asegúrate de que los submódulos estén correctamente inicializados
+echo "🔄 Actualizando submódulos..."
 git submodule update --init --recursive
 
 # Recorremos cada submódulo uno por uno
 for REPO_DIR in "$REPOS_DIR"/*; do
   if [ -d "$REPO_DIR" ]; then
     REPO_NAME=$(basename "$REPO_DIR")  # Nombre del repositorio (submódulo)
-    
     echo "🔄 Procesando el submódulo: $REPO_NAME..."
 
     # Sincronizar el submódulo
-    git submodule update --remote "$REPO_NAME"
+    git submodule update --remote "$REPO_NAME" || { echo "⚠️ Error al actualizar submódulo: $REPO_NAME"; exit 1; }
 
     # Crear archivo de salida para cada repositorio
     OUTPUT_FILE="$OUTPUT_DIR/$REPO_NAME.md"
@@ -29,20 +30,28 @@ for REPO_DIR in "$REPOS_DIR"/*; do
 
     # Inicializamos el archivo de salida
     > "$OUTPUT_FILE"
+    echo "  ✅ Archivo de salida vacío creado: $OUTPUT_FILE"
 
-    # Buscar y unificar todos los archivos de texto dentro del submódulo
-    find "$REPO_DIR" -type f \( -iname "*.md" -o -iname "*.txt" \) | while read -r FILE; do
-      echo "  🔍 Procesando archivo: $FILE"
-      cat "$FILE" >> "$OUTPUT_FILE"
-      echo -e "\n\n" >> "$OUTPUT_FILE"  # Añadir separación entre archivos
+    # Buscar todos los archivos dentro del submódulo, incluso los binarios
+    find "$REPO_DIR" -type f | while read -r FILE; do
+      echo "    🔍 Procesando archivo: $FILE"
+
+      # Si el archivo es de texto, lo concatenamos al archivo de salida
+      if file "$FILE" | grep -q 'text'; then
+        cat "$FILE" >> "$OUTPUT_FILE"
+        echo -e "\n\n" >> "$OUTPUT_FILE"  # Añadir separación entre archivos de texto
+      else
+        echo "    ⚠️ Saltando archivo binario o no texto: $FILE"
+      fi
     done
 
     echo "✅ Archivo generado: $OUTPUT_FILE"
 
     # Subir el archivo generado a tu repositorio
+    echo "🔄 Añadiendo el archivo .md generado a git..."
     git add "$OUTPUT_FILE"
     git commit -m "Añadir archivo .md generado para $REPO_NAME"
-    git push
+    git push || { echo "⚠️ Error al hacer push para $REPO_NAME"; exit 1; }
 
     echo "✅ Archivo .md subido para $REPO_NAME"
   else
