@@ -184,3 +184,6 @@
 [submodule "repos/awsdocs/aws-codepipeline-user-guide"]
 	path = repos/awsdocs/aws-codepipeline-user-guide
 	url = https://github.com/awsdocs/aws-codepipeline-user-guide.git
+[submodule "repos/awsdocs/aws-codedeploy-user-guide"]
+	path = repos/awsdocs/aws-codedeploy-user-guide
+	url = https://github.com/awsdocs/aws-codedeploy-user-guide.git
