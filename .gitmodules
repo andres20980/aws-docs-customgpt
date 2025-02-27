@@ -286,3 +286,6 @@
 [submodule "repos/awsdocs/aws-direct-connect-user-guide"]
 	path = repos/awsdocs/aws-direct-connect-user-guide
 	url = https://github.com/awsdocs/aws-direct-connect-user-guide.git
+[submodule "repos/awsdocs/aws-elemental-mediatailor-user-guide"]
+	path = repos/awsdocs/aws-elemental-mediatailor-user-guide
+	url = https://github.com/awsdocs/aws-elemental-mediatailor-user-guide.git
