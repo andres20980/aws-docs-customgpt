@@ -226,3 +226,6 @@
 [submodule "repos/awsdocs/amazon-redshift-management-guide"]
 	path = repos/awsdocs/amazon-redshift-management-guide
 	url = https://github.com/awsdocs/amazon-redshift-management-guide.git
+[submodule "repos/awsdocs/amazon-redshift-getting-started-guide"]
+	path = repos/awsdocs/amazon-redshift-getting-started-guide
+	url = https://github.com/awsdocs/amazon-redshift-getting-started-guide.git
