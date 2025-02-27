@@ -40,3 +40,6 @@
 [submodule "repos/awsdocs/aws-go-developer-guide"]
 	path = repos/awsdocs/aws-go-developer-guide
 	url = https://github.com/awsdocs/aws-go-developer-guide.git
+[submodule "repos/awsdocs/aws-ruby-developer-guide"]
+	path = repos/awsdocs/aws-ruby-developer-guide
+	url = https://github.com/awsdocs/aws-ruby-developer-guide.git
