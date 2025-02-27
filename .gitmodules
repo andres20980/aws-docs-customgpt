@@ -172,3 +172,6 @@
 [submodule "repos/awsdocs/amazon-kinesis-data-streams-developer-guide"]
 	path = repos/awsdocs/amazon-kinesis-data-streams-developer-guide
 	url = https://github.com/awsdocs/amazon-kinesis-data-streams-developer-guide.git
+[submodule "repos/awsdocs/amazon-application-discovery-user-guide"]
+	path = repos/awsdocs/amazon-application-discovery-user-guide
+	url = https://github.com/awsdocs/amazon-application-discovery-user-guide.git
