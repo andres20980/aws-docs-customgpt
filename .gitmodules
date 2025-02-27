@@ -289,3 +289,6 @@
 [submodule "repos/awsdocs/aws-elemental-mediatailor-user-guide"]
 	path = repos/awsdocs/aws-elemental-mediatailor-user-guide
 	url = https://github.com/awsdocs/aws-elemental-mediatailor-user-guide.git
+[submodule "repos/awsdocs/amazon-ec2-user-guide-windows"]
+	path = repos/awsdocs/amazon-ec2-user-guide-windows
+	url = https://github.com/awsdocs/amazon-ec2-user-guide-windows.git
