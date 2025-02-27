@@ -34,3 +34,6 @@
 [submodule "repos/awsdocs/aws-doc-sdk-examples"]
 	path = repos/awsdocs/aws-doc-sdk-examples
 	url = https://github.com/awsdocs/aws-doc-sdk-examples.git
+[submodule "repos/awsdocs/aws-cpp-developer-guide"]
+	path = repos/awsdocs/aws-cpp-developer-guide
+	url = https://github.com/awsdocs/aws-cpp-developer-guide.git
