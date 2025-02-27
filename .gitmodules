@@ -244,3 +244,6 @@
 [submodule "repos/awsdocs/aws-elemental-mediastore-user-guide"]
 	path = repos/awsdocs/aws-elemental-mediastore-user-guide
 	url = https://github.com/awsdocs/aws-elemental-mediastore-user-guide.git
+[submodule "repos/awsdocs/aws-storagegateway-user-guide"]
+	path = repos/awsdocs/aws-storagegateway-user-guide
+	url = https://github.com/awsdocs/aws-storagegateway-user-guide.git
