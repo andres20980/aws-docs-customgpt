@@ -124,3 +124,6 @@
 [submodule "repos/awsdocs/aws-lambda-developer-guide"]
 	path = repos/awsdocs/aws-lambda-developer-guide
 	url = https://github.com/awsdocs/aws-lambda-developer-guide.git
+[submodule "repos/awsdocs/aws-cost-management-user-guide"]
+	path = repos/awsdocs/aws-cost-management-user-guide
+	url = https://github.com/awsdocs/aws-cost-management-user-guide.git
