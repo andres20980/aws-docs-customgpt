@@ -22,6 +22,12 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
+      - name: 🔍 Comprobar permisos de escritura en el repositorio
+        run: |
+          echo "Verificando permisos de escritura en el repositorio..."
+          git ls-remote https://github.com/${{ github.repository }} || exit 1
+        continue-on-error: false  # Esto hará que el job falle si hay un error al verificar permisos
+
       - name: 🧹 Limpiar el entorno de submódulos
         run: |
           git submodule deinit -f .

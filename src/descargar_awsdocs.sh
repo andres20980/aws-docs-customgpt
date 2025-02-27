@@ -31,7 +31,7 @@ done
 
 cd "$BASE_PATH"
 
-# Paso 2: Organizar los archivos .md por temática (basado en nombre de repositorio)
+# Paso 2: Organizar los archivos .md por temática (basado en nombre del repositorio)
 echo "📑 Organizando archivos .md..."
 
 mkdir -p "$BASE_PATH/aws_docs_fuentes"
