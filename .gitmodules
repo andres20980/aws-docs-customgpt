@@ -28,3 +28,6 @@
 [submodule "repos/awsdocs/aws-toolkit-visual-studio-user-guide"]
 	path = repos/awsdocs/aws-toolkit-visual-studio-user-guide
 	url = https://github.com/awsdocs/aws-toolkit-visual-studio-user-guide.git
+[submodule "repos/awsdocs/aws-powershell-user-guide"]
+	path = repos/awsdocs/aws-powershell-user-guide
+	url = https://github.com/awsdocs/aws-powershell-user-guide.git
