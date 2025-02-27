@@ -67,3 +67,6 @@
 [submodule "repos/awsdocs/aws-organizations-docs"]
 	path = repos/awsdocs/aws-organizations-docs
 	url = https://github.com/awsdocs/aws-organizations-docs.git
+[submodule "repos/awsdocs/amazon-route53-docs"]
+	path = repos/awsdocs/amazon-route53-docs
+	url = https://github.com/awsdocs/amazon-route53-docs.git
