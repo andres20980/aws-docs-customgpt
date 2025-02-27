@@ -136,3 +136,6 @@
 [submodule "repos/awsdocs/aws-certificate-user-guide"]
 	path = repos/awsdocs/aws-certificate-user-guide
 	url = https://github.com/awsdocs/aws-certificate-user-guide.git
+[submodule "repos/awsdocs/amazon-sumerian-user-guide"]
+	path = repos/awsdocs/amazon-sumerian-user-guide
+	url = https://github.com/awsdocs/amazon-sumerian-user-guide.git
