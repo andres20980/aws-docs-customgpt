@@ -64,3 +64,6 @@
 [submodule "repos/awsdocs/aws-cloudhsm-user-guide"]
 	path = repos/awsdocs/aws-cloudhsm-user-guide
 	url = https://github.com/awsdocs/aws-cloudhsm-user-guide.git
+[submodule "repos/awsdocs/aws-organizations-docs"]
+	path = repos/awsdocs/aws-organizations-docs
+	url = https://github.com/awsdocs/aws-organizations-docs.git
