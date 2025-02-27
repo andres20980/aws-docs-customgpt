@@ -220,3 +220,6 @@
 [submodule "repos/awsdocs/amazon-elasticache-docs"]
 	path = repos/awsdocs/amazon-elasticache-docs
 	url = https://github.com/awsdocs/amazon-elasticache-docs.git
+[submodule "repos/awsdocs/amazon-kinesis-data-analytics-developer-guide"]
+	path = repos/awsdocs/amazon-kinesis-data-analytics-developer-guide
+	url = https://github.com/awsdocs/amazon-kinesis-data-analytics-developer-guide.git
